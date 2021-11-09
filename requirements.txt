@@ -1,11 +1,10 @@
-disnake
-discord.py
+disnake==2.2.1
 ffmpeg-python
 disnake-together
 typehint
 googlesearch-python
-discord
 bs4
 Flask
 simpcalci
 PyDictionary
+python-dateutil
