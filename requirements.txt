@@ -1,0 +1,11 @@
+disnake
+discord.py
+ffmpeg-python
+disnake-together
+typehint
+googlesearch-python
+discord
+bs4
+Flask
+simpcalci
+PyDictionary
