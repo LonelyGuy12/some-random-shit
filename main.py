@@ -794,24 +794,6 @@ async def setdelay(ctx, seconds: int):
   else:
     await ctx.send("You are not allowed to use this command")
 
-@Yui.command(name='8ball')
-async def _ball(ctx, *, question):
-    responses = [
-      'That is a resounding no',
-      'It is not looking likely',
-      'Too hard to tell',
-      'It is quite possible',
-      'That is a definite yes!',
-      'Maybe',
-      'There is a good chance'
-    ]
-    answer = random.choice(responses)
-    embed = disnake.Embed()
-    embed.add_field(name="Question", value=question, inline=False)
-    embed.add_field(name="Answer", value=answer, inline=False)
-    embed.set_thumbnail(url="https://www.horoscope.com/images-US/games/game-magic-8-ball-no-text.png")
-    embed.set_footer(text="I love you Yui")
-    await ctx.reply(embed=embed)
 
 @Yui.command(aliases=['pfp', 'avatar'])
 async def av(ctx, *, user: disnake.Member=None): 
@@ -1678,5 +1660,21 @@ async def devintroduce(ctx):
     embed.set_thumbnail(url="https://i.pinimg.com/originals/08/7d/61/087d61a0739e928e7a840a8a51bed05a.jpg")
     await ctx.reply(embed=embed)
 
+@Yui.command()
+@commands.is_owner()
+async def unloadall(ctx):
+    for filename in os.listdir("./cogs"):
+        if filename.endswith('.py'):
+            bot.unload_extension(f"cogs.{filename[:-3]}")
+            await ctx.send(f"Unloaded `{filename[:-3]}` successfully!")    
 
+@Yui.command()
+@commands.is_owner()
+async def loadall(ctx):
+    for filename in os.listdir("./cogs"):
+        if filename.endswith('.py'):
+            bot.load_extension(f"cogs.{filename[:-3]}")
+            await ctx.send(f"Loaded `{filename[:-3]}` successfully!")
+
+bot.load_extension("cogs.fun")
 Yui.run(token)
