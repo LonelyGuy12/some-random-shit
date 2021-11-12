@@ -1665,7 +1665,7 @@ async def devintroduce(ctx):
 async def unloadall(ctx):
     for filename in os.listdir("./cogs"):
         if filename.endswith('.py'):
-            bot.unload_extension(f"cogs.{filename[:-3]}")
+            Yui.unload_extension(f"cogs.{filename[:-3]}")
             await ctx.send(f"Unloaded `{filename[:-3]}` successfully!")    
 
 @Yui.command()
@@ -1673,8 +1673,8 @@ async def unloadall(ctx):
 async def loadall(ctx):
     for filename in os.listdir("./cogs"):
         if filename.endswith('.py'):
-            bot.load_extension(f"cogs.{filename[:-3]}")
+            Yui.load_extension(f"cogs.{filename[:-3]}")
             await ctx.send(f"Loaded `{filename[:-3]}` successfully!")
 
-bot.load_extension("cogs.fun")
+Yui.load_extension("cogs.fun")
 Yui.run(token)
