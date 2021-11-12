@@ -1663,18 +1663,19 @@ async def devintroduce(ctx):
 @Yui.command()
 @commands.is_owner()
 async def unloadall(ctx):
-    for filename in os.listdir("./cogs"):
-        if filename.endswith('.py'):
-            Yui.unload_extension(f"cogs.{filename[:-3]}")
-            await ctx.send(f"Unloaded `{filename[:-3]}` successfully!")    
+    if ctx.author.id in [827123687055949824, 826823454081941545, 886120777630486538, 738609666505834517]:
+        for filename in os.listdir("./cogs"):
+            if filename.endswith('.py'):
+                Yui.unload_extension(f"cogs.{filename[:-3]}")
+                await ctx.send(f"Unloaded `{filename[:-3]}` successfully!")    
 
 @Yui.command()
-@commands.is_owner()
 async def loadall(ctx):
-    for filename in os.listdir("./cogs"):
-        if filename.endswith('.py'):
-            Yui.load_extension(f"cogs.{filename[:-3]}")
-            await ctx.send(f"Loaded `{filename[:-3]}` successfully!")
+    if ctx.author.id in [827123687055949824, 826823454081941545, 886120777630486538, 738609666505834517]:
+        for filename in os.listdir("./cogs"):
+            if filename.endswith('.py'):
+                Yui.load_extension(f"cogs.{filename[:-3]}")
+                await ctx.send(f"Loaded `{filename[:-3]}` successfully!")
 
 Yui.load_extension("cogs.fun")
 Yui.run(token)
