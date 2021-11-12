@@ -1661,7 +1661,6 @@ async def devintroduce(ctx):
     await ctx.reply(embed=embed)
 
 @Yui.command()
-@commands.is_owner()
 async def unloadall(ctx):
     if ctx.author.id in [827123687055949824, 826823454081941545, 886120777630486538, 738609666505834517]:
         for filename in os.listdir("./cogs"):
