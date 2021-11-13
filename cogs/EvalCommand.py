@@ -1,6 +1,7 @@
 from time import time
 from disnake.ext import commands
 import sys
+import os
 from inspect import getsource
 import disnake as discord
 
