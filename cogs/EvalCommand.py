@@ -1,7 +1,7 @@
 from time import time
-from discord.ext import commands
+from disnake.ext import commands
 from inspect import getsource
-import discord
+import disnake as discord
 
 class EvalCommand:
     def __init__(self):
