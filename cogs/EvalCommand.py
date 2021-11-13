@@ -56,4 +56,4 @@ class EvalCommand:
         del args, code, silent
         
 def setup(Yui):
-    Yui.add_cog(EvalCommand())
+    Yui.add_cog(EvalCommand(Yui))
