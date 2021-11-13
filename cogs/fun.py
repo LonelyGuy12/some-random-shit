@@ -11,7 +11,6 @@ class Fun(commands.Cog):
     self.Yui = Yui
 
   @commands.command(aliases = ["8ball", "8b", "8"])
-  @commands.cooldown(1, 5,commands.BucketType.user)
   async def _8ball(self, ctx, *, Question):
     responses = ["as I see it, yes", "yes!!!", "no!!!", "heck off, you know that's a no", "i can tell you certainly, no", " that would be a hell no", "ask again later", "better not tell you now", "cannot predict now", "concentrate and ask again",
              "don’t count on it", "It is certain", "it is decidedly so", "most likely", "my reply is no", "my sources say no",
@@ -23,7 +22,6 @@ class Fun(commands.Cog):
 
 
   @commands.command()
-  @commands.cooldown(1, 5,commands.BucketType.user)
   async def gayrate(self, ctx, *, name=None):
     rate = random.randrange(99)
     rate1 = rate + 1
@@ -37,7 +35,6 @@ class Fun(commands.Cog):
 
     
   @commands.command()
-  @commands.cooldown(1, 5,commands.BucketType.user)
   async def pp(self, ctx, *, name=None):
     random_number = random.randint(0, 30)
     alphabet = '='
@@ -52,7 +49,6 @@ class Fun(commands.Cog):
 
   
   @commands.command()
-  @commands.cooldown(1, 5,commands.BucketType.user)
   async def simprate(self, ctx, *, name=None):
     rate = random.randrange(99)
     rate1 = rate + 1
@@ -66,7 +62,6 @@ class Fun(commands.Cog):
 
 
   @commands.command()
-  @commands.cooldown(1, 5,commands.BucketType.user)
   async def emojify(self, ctx, *, text):
     emojis = []
     for s in text:
@@ -93,7 +88,6 @@ class Fun(commands.Cog):
     await ctx.send(''.join(emojis))
 
   @commands.command()
-  @commands.cooldown(1, 5,commands.BucketType.user)
   async def joke(self, ctx):
     response = requests.get("https://icanhazdadjoke.com", headers = {"Accept": "text/plain"})
     embed = discord.Embed(title = "Random Joke!", description = response.text, color = ctx.author.color)
