@@ -4,7 +4,7 @@ from inspect import getsource
 import disnake as discord
 
 class EvalCommand:
-    def __init__(self):
+    def __init__(self, Yui):
         pass
     
     def resolve_variable(self, variable):
