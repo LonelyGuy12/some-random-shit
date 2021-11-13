@@ -1,3 +1,28 @@
+from time import time
+from disnake.ext import commands
+import sys
+import os
+from inspect import getsource
+import disnake as discord
+
+class EvalCommand(commands.Cog):
+    def __init__(self, Yui):
+        self.Yui = Yui
+
+class QuitButton(disnake.ui.View):
+    def __init__(
+        self,
+        ctx: Union[Context, ApplicationCommandInteraction],
+        *,
+        timeout: float = 180.0,
+        delete_after: bool = False
+    ):
+        super().__init__(timeout=timeout)
+        self.ctx = ctx
+        self.delete_after = delete_after
+        self.message = None
+  
+  
   @commands.command(name='eval', aliases=['e'])
     async def _eval(self, ctx: Context, *, content=None):
         """Evaluate code."""
@@ -49,3 +74,7 @@
         em.set_footer(text=f'Took {took}s')
         view = QuitButton(ctx)
         view.message = await ctx.send(embed=em, view=view)
+
+        
+def setup(Yui):
+  Yui.add_cog(EvalCommand(Yui))
