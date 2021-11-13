@@ -3,9 +3,9 @@ from disnake.ext import commands
 from inspect import getsource
 import disnake as discord
 
-class EvalCommand:
+class EvalCommand(commands.Cog):
     def __init__(self, Yui):
-        pass
+        self.Yui = Yui
     
     def resolve_variable(self, variable):
         if hasattr(variable, "__iter__"):
