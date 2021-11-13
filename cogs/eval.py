@@ -9,18 +9,18 @@ class EvalCommand(commands.Cog):
     def __init__(self, Yui):
         self.Yui = Yui
 
-class QuitButton(disnake.ui.View):
-    def __init__(
-        self,
-        ctx: Union[Context, ApplicationCommandInteraction],
-        *,
-        timeout: float = 180.0,
-        delete_after: bool = False
-    ):
-        super().__init__(timeout=timeout)
-        self.ctx = ctx
-        self.delete_after = delete_after
-        self.message = None
+    class QuitButton(disnake.ui.View):
+        def __init__(
+            self,
+            ctx: Union[Context, ApplicationCommandInteraction],
+            *,
+            timeout: float = 180.0,
+            delete_after: bool = False
+        ):
+            super().__init__(timeout=timeout)
+            self.ctx = ctx
+            self.delete_after = delete_after
+            self.message = None
   
   
       @commands.command(name='eval', aliases=['e'])
