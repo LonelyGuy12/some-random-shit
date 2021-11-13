@@ -1677,4 +1677,5 @@ async def loadall(ctx):
                 await ctx.send(f"Loaded `{filename[:-3]}` successfully!")
 
 Yui.load_extension("cogs.fun")
+Yui.load_extension("cogs.EvalCommand")
 Yui.run(token)
