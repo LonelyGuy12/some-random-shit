@@ -27,6 +27,7 @@ class Fun(commands.Cog):
   @commands.command(pass_context=True)
   async def meme(self, ctx):
       wait = await ctx.send(f":mag: Please hold on, searching ")
+      try:
           reddit = praw.Reddit(client_id="3Vc9iaToaEBJO9GvHHx1Cw",
                                client_secret="mc_gIsXlZJYoolzEXsKOhSArHxq6Fg",
                                username="Username",
@@ -47,6 +48,8 @@ class Fun(commands.Cog):
           embed.set_image(url=send_meme.url)
           embed.set_footer(text="Source: Reddit")
           await wait.edit(content="", embed=embed)
+       except:
+          raise(error)
     
     
   @commands.command()
