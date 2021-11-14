@@ -25,8 +25,7 @@ class Fun(commands.Cog):
 
 
   @commands.command(pass_context=True)
-  async def meme(ctx):
-      await ctx.message.delete()
+  async def meme(self, ctx):
       wait = await ctx.send(f":mag: Please hold on, searching ")
       try:
           reddit = praw.Reddit(client_id="3Vc9iaToaEBJO9GvHHx1Cw",
