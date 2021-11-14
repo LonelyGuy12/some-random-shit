@@ -1,6 +1,7 @@
 import disnake as discord
 from disnake.ext import commands
 import random
+import praw
 import requests
 import aiohttp
 
@@ -20,7 +21,38 @@ class Fun(commands.Cog):
     em=discord.Embed(title=f'8ball Has Spoken', description=f'🎱 {response}', color=ctx.author.color)
     await ctx.send(embed=em)
 
+  memes = []
 
+
+@commands.command(pass_context=True)
+async def meme(ctx):
+    await ctx.message.delete()
+    wait = await ctx.send(f":mag: Please hold on, searching ")
+    try:
+        reddit = praw.Reddit(client_id="3Vc9iaToaEBJO9GvHHx1Cw",
+                             client_secret="mc_gIsXlZJYoolzEXsKOhSArHxq6Fg",
+                             username="Username",
+                             password="",
+                             user_agent="UserAgent",
+                             check_for_async=False)
+        if not memes:
+            subreddit = reddit.subreddit("meme")
+            meme = subreddit.top(limit=300)
+            for i in meme:
+                link = i.url
+                if len(link.split('.')[-1]) == 3:
+                    memes.append(i)
+
+        send_meme = random.choice(memes)
+        memes.remove(send_meme)
+        embed = discord.Embed(title=send_meme.title, colour=0xffae00)
+        embed.set_image(url=send_meme.url)
+        embed.set_footer(text="Source: Reddit")
+        await wait.edit(content="", embed=embed)
+    except:
+        await wait.edit(content=":x: Something went wrong, cannot get meme ")
+    
+    
   @commands.command()
   async def gayrate(self, ctx, *, name=None):
     rate = random.randrange(99)
