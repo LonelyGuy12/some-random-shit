@@ -6,5 +6,6 @@ googlesearch-python
 bs4
 Flask
 simpcalci
+praw
 PyDictionary
 python-dateutil
