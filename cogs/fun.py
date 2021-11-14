@@ -48,7 +48,7 @@ class Fun(commands.Cog):
           embed.set_image(url=send_meme.url)
           embed.set_footer(text="Source: Reddit")
           await wait.edit(content="", embed=embed)
-       except:
+      except:
           raise(error)
     
     
