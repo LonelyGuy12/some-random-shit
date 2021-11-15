@@ -622,10 +622,10 @@ async def maid(ctx, mentioned_member: disnake.Member = None):
 		    else:
 			    error=api["error"]
                 titld = "Error!"
-                main = f'''Oops looks like an unexpected error occured please try again after sometime
+                main = f''Oops looks like an unexpected error occured please try again after sometime
                 Error :-
                 ```{error}
-                ```'''
+                ```''
                 embedVar = disnake.Embed(title=titld, description=main, color=0x00ff00)
                 await ctx.send(embed=embedVar)
 
@@ -642,9 +642,9 @@ async def waifu(ctx, mentioned_member: disnake.Member = None):
 		    else:
 		        error=api["error"]
                 titld = "Error!"
-                main = f'''Oops looks like an unexpected error occured please try again after sometime
+                main = f''Oops looks like an unexpected error occured please try again after sometime
                 Error :-
-                ```{error}
+                ``{error}
                 ```'''
                 embedVar = disnake.Embed(title=titld, description=main, color=0x00ff00)
                 await ctx.send(embed=embedVar)
