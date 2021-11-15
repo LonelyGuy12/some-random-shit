@@ -608,7 +608,7 @@ async def roleinfo(ctx, *, role: disnake.Role):
     em.add_field(name="Colour", value=colour)
     em.add_field(name='Creation Date', value=created_on)
     await ctx.send(embed=em)
-
+'''
 @Yui.command()
 async def maid(ctx, mentioned_member: disnake.Member = None):
     async with aiohttp.ClientSession() as cs:
@@ -648,6 +648,7 @@ async def waifu(ctx, mentioned_member: disnake.Member = None):
                 ```'''
                 embedVar = disnake.Embed(title=titld, description=main, color=0x00ff00)
                 await ctx.send(embed=embedVar)
+'''
 
 @Yui.command()
 async def nsfwwaifu(ctx):
@@ -1281,7 +1282,7 @@ async def help(ctx, *, cmd = None):
         Desc = "I hope you Enjoy!!!"
         embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
         Field1 = "Fun :-"
-        hi = "`kiss`,`hug`,`cuddle`,`pat`,`highfive`,`kickem`,`kill`,`bully`,`bite`,`tickle`,`cat`,`waifu`,`maid`,`8ball`,`wyr`,`slap`,`cry`,`truth`,`dare`, `tic`"
+        hi = f"`kiss`,`hug`,`cuddle`,`pat`,`highfive`,`kickem`,`kill`,`bully`,`bite`,`tickle`,`cat`,'''`waifu`,`maid`''',`8ball`,`wyr`,`slap`,`cry`,`truth`,`dare`, `tic`"
         embed.add_field(name=Field1, value=hi, inline=False)
         Field2 = "Moderation :-"
         hi2 = "`kick`,`ban`,`unban`,`purge`,`setdelay`"
