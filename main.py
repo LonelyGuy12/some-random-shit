@@ -28,6 +28,7 @@ asyncio.get_event_loop().set_debug(True)
 with open('config.json') as f:
     config = json.load(f)
 
+waifuim= {'User-Agent':f'aiohttp/{aiohttp.__version__}; YourAppName'}
 bot_embed_color = 0x4548a8
 prefix = config.get('prefix')
 cuttly_key = config.get('cuttly_key')
@@ -609,20 +610,44 @@ async def roleinfo(ctx, *, role: disnake.Role):
     await ctx.send(embed=em)
 
 @Yui.command()
-async def waifu(ctx, mentioned_member: disnake.Member = None):
-    r = requests.get("https://api.waifu.pics/sfw/waifu")
-    res = r.json()
-    em = disnake.Embed()
-    em.set_image(url=res['url'])
-    await ctx.send(embed=em)
+async def maid(ctx, mentioned_member: disnake.Member = None):
+    async with aiohttp.ClientSession() as cs:
+	    async with cs.get("https://api.waifu.im/sfw/maid/?exclude=3867126be8e260b5.jpeg,ca52928d43b30d6a&gif=true",headers=waifuim) as rep:
+		    api= await rep.json()
+		    if rep.status == 200:
+		     	url=api.get('tags')[0].get('images')[0].get('url')
+                 em = disnake.Embed()
+                 em.set_image(url=res['url'])
+                 await ctx.send(embed=em)
+		    else:
+			    error=api["error"]
+                titld = "Error!"
+                main = f'''Oops looks like an unexpected error occured please try again after sometime
+                Error :-
+                ```{error}
+                ```'''
+                embedVar = disnake.Embed(title=titld, description=main, color=0x00ff00)
+                await ctx.send(embed=embedVar)
 
 @Yui.command()
-async def neko(ctx, mentioned_member: disnake.Member = None):
-    r = requests.get("https://api.waifu.pics/sfw/neko")
-    res = r.json()
-    em = disnake.Embed()
-    em.set_image(url=res['url'])
-    await ctx.send(embed=em)
+async def waifu(ctx, mentioned_member: disnake.Member = None):
+    async with aiohttp.ClientSession() as cs:
+	    async with cs.get("https://api.waifu.im/sfw/waifu/?exclude=3867126be8e260b5.jpeg,ca52928d43b30d6a&gif=true",headers=waifuim) as rep:
+		    api= await rep.json()
+		    if rep.status == 200:
+		     	url=api.get('tags')[0].get('images')[0].get('url')
+                 em = disnake.Embed()
+                 em.set_image(url=res['url'])
+                 await ctx.send(embed=em)
+		    else:
+			    error=api["error"]
+                titld = "Error!"
+                main = f'''Oops looks like an unexpected error occured please try again after sometime
+                Error :-
+                ```{error}
+                ```'''
+                embedVar = disnake.Embed(title=titld, description=main, color=0x00ff00)
+                await ctx.send(embed=embedVar)
 
 @Yui.command()
 async def nsfwwaifu(ctx):
@@ -1256,7 +1281,7 @@ async def help(ctx, *, cmd = None):
         Desc = "I hope you Enjoy!!!"
         embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
         Field1 = "Fun :-"
-        hi = "`kiss`,`hug`,`cuddle`,`pat`,`highfive`,`kickem`,`kill`,`bully`,`bite`,`tickle`,`cat`,`waifu`,`neko`,`8ball`,`wyr`,`slap`,`cry`,`truth`,`dare`, `tic`"
+        hi = "`kiss`,`hug`,`cuddle`,`pat`,`highfive`,`kickem`,`kill`,`bully`,`bite`,`tickle`,`cat`,`waifu`,`maid`,`8ball`,`wyr`,`slap`,`cry`,`truth`,`dare`, `tic`"
         embed.add_field(name=Field1, value=hi, inline=False)
         Field2 = "Moderation :-"
         hi2 = "`kick`,`ban`,`unban`,`purge`,`setdelay`"
