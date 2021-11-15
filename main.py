@@ -1282,7 +1282,7 @@ async def help(ctx, *, cmd = None):
         Desc = "I hope you Enjoy!!!"
         embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
         Field1 = "Fun :-"
-        hi = f"`kiss`,`hug`,`cuddle`,`pat`,`highfive`,`kickem`,`kill`,`bully`,`bite`,`tickle`,`cat`,'''`waifu`,`maid`''',`8ball`,`wyr`,`slap`,`cry`,`truth`,`dare`, `tic`"
+        hi = f"`kiss`,`hug`,`cuddle`,`pat`,`highfive`,`kickem`,`kill`,`bully`,`bite`,`tickle`,`cat`,`8ball`,`wyr`,`slap`,`cry`,`truth`,`dare`, `tic`"
         embed.add_field(name=Field1, value=hi, inline=False)
         Field2 = "Moderation :-"
         hi2 = "`kick`,`ban`,`unban`,`purge`,`setdelay`"
