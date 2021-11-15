@@ -620,14 +620,14 @@ async def maid(ctx, mentioned_member: disnake.Member = None):
                     	em.set_image(url=res['url'])
                     	await ctx.send(embed=em)
 		    else:
-			    error=api["error"]
-                            titld = "Error!"
-                            main = f'''Oops looks like an unexpected error occured please try again after sometime
-                            Error :-
-                            ```{error}
-                            ```'''
-                            embedVar = disnake.Embed(title=titld, description=main, color=0x00ff00)
-                            await ctx.send(embed=embedVar)
+			error=api["error"]
+                        titld = "Error!"
+                        main = f'''Oops looks like an unexpected error occured please try again after sometime
+                        Error :-
+                        ```{error}
+                        ```'''
+                        embedVar = disnake.Embed(title=titld, description=main, color=0x00ff00)
+                        await ctx.send(embed=embedVar)
 
 @Yui.command()
 async def waifu(ctx, mentioned_member: disnake.Member = None):
@@ -635,19 +635,19 @@ async def waifu(ctx, mentioned_member: disnake.Member = None):
 	    async with cs.get("https://api.waifu.im/sfw/waifu/?exclude=3867126be8e260b5.jpeg,ca52928d43b30d6a&gif=true",headers=waifuim) as rep:
 		    api= await rep.json()
 		    if rep.status == 200:
-		     	url=api.get('tags')[0].get('images')[0].get('url')
+		       	url=api.get('tags')[0].get('images')[0].get('url')
                         em = disnake.Embed()
                         em.set_image(url=res['url'])
                         await ctx.send(embed=em)
 		    else:
-			    error=api["error"]
-                            titld = "Error!"
-                            main = f'''Oops looks like an unexpected error occured please try again after sometime
-                            Error :-
-                            ```{error}
-                            ```'''
-                            embedVar = disnake.Embed(title=titld, description=main, color=0x00ff00)
-                            await ctx.send(embed=embedVar)
+		        error=api["error"]
+                        titld = "Error!"
+                        main = f'''Oops looks like an unexpected error occured please try again after sometime
+                        Error :-
+                        ```{error}
+                        ```'''
+                        embedVar = disnake.Embed(title=titld, description=main, color=0x00ff00)
+                        await ctx.send(embed=embedVar)
 
 @Yui.command()
 async def nsfwwaifu(ctx):
