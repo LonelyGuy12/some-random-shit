@@ -645,7 +645,7 @@ async def waifu(ctx, mentioned_member: disnake.Member = None):
                 main = f''Oops looks like an unexpected error occured please try again after sometime
                 Error :-
                 ``{error}
-                ```'''
+                ```''
                 embedVar = disnake.Embed(title=titld, description=main, color=0x00ff00)
                 await ctx.send(embed=embedVar)
 '''
