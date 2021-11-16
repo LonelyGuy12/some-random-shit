@@ -1,4 +1,4 @@
-disnake==2.2.1
+git+https://github.com/DisnakeDev/disnake.git
 ffmpeg-python
 disnake-together
 typehint
