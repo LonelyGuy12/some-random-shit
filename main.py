@@ -1664,27 +1664,33 @@ async def sendJJ(ctx,  message): # b'\xfc'
 async def devintroduce(ctx):
   if ctx.author.id in [827123687055949824, 826823454081941545, 886120777630486538, 738609666505834517]:
     await ctx.message.delete()
-    embed=disnake.Embed(title="Hello There ", description=f'''I hope you all are doing good
+    embed=disnake.Embed(title="Hello There ", url="https://lonelyguy12.github.io/", description=f'''I hope you all are doing good
     I am {str(ctx.author.mention)} from Moscow, Russia
     I love my wifey, coding, music(EDM and Pop), cooking and cycling
+    Imma Nyctophile and Selenophile BTW
     Dislikes - Rude People, Linux Haters
     I am ~~single~~ taken by Skyy xD
+    Personality Type - ISFP - T :)
     Glad to see y'all have an amazing day''', color = bot_embed_color)
-    embed.set_author(name=f"{ctx.author.name}", url="https://discord.gg/ANj8Mz6fy4", icon_url="https://cdn.discordapp.com/avatars/886120777630486538/d4e47a28953acc3ae0fd0372aea715bc.png?size=100")
+    embed.set_author(name=f"{ctx.author.name}", url="https://discord.gg/ANj8Mz6fy4", icon_url="https://cdn.discordapp.com/avatars/886120777630486538/3ff0b50f4ea3544f41267f5a92d454d0.png?size=100")
     embed.set_image(url="https://p4.wallpaperbetter.com/wallpaper/623/371/684/anime-hyouka-eru-chitanda-h%C5%8Dtar%C5%8D-oreki-hd-wallpaper-preview.jpg")
     embed.set_thumbnail(url="https://i.pinimg.com/originals/08/7d/61/087d61a0739e928e7a840a8a51bed05a.jpg")
-    await ctx.send(embed=embed)
+    embed.set_footer(text="For more info :- https://lonelyguy12.github.io/")
+    await ctx.send(embed=embed) 
   else:
-    embed=disnake.Embed(title="Hello There ", description=f'''I hope you all are doing good
+    embed=disnake.Embed(title="Hello There ", url="https://lonelyguy12.github.io/", description=f'''I hope you all are doing good
     I am Lonely Guy from Moscow, Russia
     I love my wifey, coding, music(EDM and Pop), cooking and cycling
+    Imma Nyctophile and Selenophile BTW
     Dislikes - Rude People, Linux Haters
     I am ~~single~~ taken by Skyy xD
+    Personality Type - ISFP - T :)
     Glad to see y'all have an amazing day''', color = bot_embed_color)
-    embed.set_author(name="Lonely Guy", url="https://discord.gg/ANj8Mz6fy4", icon_url="https://cdn.discordapp.com/avatars/886120777630486538/d4e47a28953acc3ae0fd0372aea715bc.png?size=100")
+    embed.set_author(name=f"Lonely Guy", url="https://discord.gg/ANj8Mz6fy4", icon_url="https://cdn.discordapp.com/avatars/886120777630486538/f900a540d618492c040efd46ff9ef85d.png?size=320")
     embed.set_image(url="https://p4.wallpaperbetter.com/wallpaper/623/371/684/anime-hyouka-eru-chitanda-h%C5%8Dtar%C5%8D-oreki-hd-wallpaper-preview.jpg")
     embed.set_thumbnail(url="https://i.pinimg.com/originals/08/7d/61/087d61a0739e928e7a840a8a51bed05a.jpg")
-    await ctx.reply(embed=embed)
+    embed.set_footer(text="For more info :- https://lonelyguy12.github.io/")
+    await ctx.send(embed=embed)
 
 @Yui.command()
 async def unloadall(ctx):
