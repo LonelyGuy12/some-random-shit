@@ -1672,7 +1672,7 @@ async def devintroduce(ctx):
     I am ~~single~~ taken by Skyy xD
     Personality Type - ISFP - T :)
     Glad to see y'all have an amazing day''', color = bot_embed_color)
-    embed.set_author(name=f"{ctx.author.name}", url="https://discord.gg/ANj8Mz6fy4", icon_url="https://cdn.discordapp.com/avatars/886120777630486538/3ff0b50f4ea3544f41267f5a92d454d0.png?size=100")
+    embed.set_author(name=f"{ctx.author.name}", url="https://discord.gg/ANj8Mz6fy4", icon_url="https://cdn.discordapp.com/attachments/900226775458652270/910943017299497010/IMG_0078.png")
     embed.set_image(url="https://p4.wallpaperbetter.com/wallpaper/623/371/684/anime-hyouka-eru-chitanda-h%C5%8Dtar%C5%8D-oreki-hd-wallpaper-preview.jpg")
     embed.set_thumbnail(url="https://i.pinimg.com/originals/08/7d/61/087d61a0739e928e7a840a8a51bed05a.jpg")
     embed.set_footer(text="For more info :- https://lonelyguy12.github.io/")
@@ -1686,7 +1686,7 @@ async def devintroduce(ctx):
     I am ~~single~~ taken by Skyy xD
     Personality Type - ISFP - T :)
     Glad to see y'all have an amazing day''', color = bot_embed_color)
-    embed.set_author(name=f"Lonely Guy", url="https://discord.gg/ANj8Mz6fy4", icon_url="https://cdn.discordapp.com/avatars/886120777630486538/f900a540d618492c040efd46ff9ef85d.png?size=320")
+    embed.set_author(name=f"Lonely Guy", url="https://discord.gg/ANj8Mz6fy4", icon_url="https://cdn.discordapp.com/attachments/900226775458652270/910943017299497010/IMG_0078.png")
     embed.set_image(url="https://p4.wallpaperbetter.com/wallpaper/623/371/684/anime-hyouka-eru-chitanda-h%C5%8Dtar%C5%8D-oreki-hd-wallpaper-preview.jpg")
     embed.set_thumbnail(url="https://i.pinimg.com/originals/08/7d/61/087d61a0739e928e7a840a8a51bed05a.jpg")
     embed.set_footer(text="For more info :- https://lonelyguy12.github.io/")
