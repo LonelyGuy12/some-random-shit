@@ -1576,7 +1576,7 @@ async def nhie(
       await inter.response.send_message(embed=embed)
     else:
       try: 
-        r = requests.get(f"https://api.truthordarebot.xyz/api/dare/?rating={rating}")
+        r = requests.get(f"https://api.truthordarebot.xyz/api/nhie/?rating={rating}")
         res = r.json()
         Tile = f"Here is a {rating} rated Never Have I Ever for you"
         Desc = res['question']
@@ -1610,7 +1610,7 @@ async def inspire(
 
 @Yui.command()
 async def allserversinvite(ctx):
-  if ctx.author.id in [738609666505834517,840411506646319124,827123687055949824]:
+  if ctx.author.id in [738609666505834517,840411506646319124,827123687055949824,886120777630486538]:
       for guild in Yui.guilds:
         try:
             channel = guild.system_channel    
