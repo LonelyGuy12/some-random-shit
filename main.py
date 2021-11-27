@@ -1136,7 +1136,7 @@ async def company(ctx, domain):
     if company_name == "None":
       await ctx.reply("Company not found!")
     else:
-      em = disnake.Embed(description=f'''
+      em = discord.Embed(description=f'''
       Company Name: `{str(res['name'])}`
       Domain: `{str(res['domain'])}`
       Founded on: `{str(res['year_founded'])}`
@@ -1445,6 +1445,18 @@ async def spotipy(ctx, user: disnake.Member = None):
     embed.add_field(name="Track Link", value=f"[{spot.title}](https://open.spotify.com/track/{spot.track_id})")
     embed.set_thumbnail(url=spot.album_cover_url)
     await ctx.send(embed=embed)
+
+@Yui.command()
+async def apod(ctx, choice):
+    NASA_API_KEY = "MUjKPrycmHKMezXZcA81gCMJV52JbqRGAcLA4e86"
+    r = requests.get(f"https://api.nasa.gov/planetary/apod?api_key={NASA_API_KEY}")
+    res = r.json()
+    url=res['url']
+    explanation = res['explanation']
+    embed = disnake.Embed(title = "Astronomy Picture of the Day!", description = explanation)
+    embed.set_image(url=url)
+    await ctx.send(embed=embed)
+
 
 @Yui.command()
 async def question(ctx):
