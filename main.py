@@ -1447,7 +1447,7 @@ async def spotipy(ctx, user: disnake.Member = None):
     await ctx.send(embed=embed)
 
 @Yui.command()
-async def apod(ctx, choice) = None:
+async def apod(ctx, choice = None):
     NASA_API_KEY = "MUjKPrycmHKMezXZcA81gCMJV52JbqRGAcLA4e86"
     r = requests.get(f"https://api.nasa.gov/planetary/apod?api_key={NASA_API_KEY}")
     res = r.json()
