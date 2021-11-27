@@ -1451,11 +1451,12 @@ async def apod(ctx, choice = None):
     NASA_API_KEY = "MUjKPrycmHKMezXZcA81gCMJV52JbqRGAcLA4e86"
     r = requests.get(f"https://api.nasa.gov/planetary/apod?api_key={NASA_API_KEY}")
     res = r.json()
-    url=res['url']
+    url=res['hdurl']
+    title = res['title']
     explanation = res['explanation']
-    embed = disnake.Embed(title = "Astronomy Picture of the Day!", description = explanation)
+    embed = disnake.Embed(title = title, description = explanation, colour = bot_embed_color)
     embed.set_image(url=url)
-    await ctx.send(embed=embed)
+    await ctx.reply(embed=embed)
 
 
 @Yui.command()
