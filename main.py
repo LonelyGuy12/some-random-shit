@@ -366,7 +366,7 @@ async def kill(
     await inter.response.send_message(embed=em)
 
 @Yui.command()
-async def bully(ctx, mentioned_member: disnake.Member = None):
+async def bully(ctx, mentioned_member: disnake.Member):
     r = requests.get("https://api.waifu.pics/sfw/bully")
     res = r.json()
     em = disnake.Embed(description=f"**{str(ctx.author.mention)} _bullies_ {str(mentioned_member.mention)}**") 
@@ -389,7 +389,7 @@ async def bully(
     await inter.response.send_message(embed=em)
 
 @Yui.command()
-async def bite(ctx, mentioned_member: disnake.Member = None):
+async def bite(ctx, mentioned_member: disnake.Member):
     r = requests.get("https://api.waifu.pics/sfw/bite")
     res = r.json()
     em = disnake.Embed(description=f"**{str(ctx.author.mention)} _bites_ {str(mentioned_member.mention)}**") 
@@ -693,7 +693,7 @@ async def weather(ctx, *, city):
             weather = r["weather"][0]["main"]
             humidity = round(float(r["main"]["humidity"]), 1)
             wind_speed = round(float(r["wind"]["speed"]), 1)
-            em = discord.Embed(description=f'''
+            em = disnake.Embed(description=f'''
             Temperature: `{temperature}`
             Lowest: `{lowest}`
             Highest: `{highest}`
@@ -716,7 +716,7 @@ async def weather(ctx, *, city):
                 City: {city.capitalize()}
                 ''')    
         except KeyError:
-            embed=discord.Embed(title="Error!!", description="Looks like an error occured! I am trying my best to solve the issue. Please stay with us. If you entered the wrong city name. Please try again and enter the city name properly without spelling mistakes!! Thank You!", color = bot_embed_color)
+            embed=disnake.Embed(title="Error!!", description="Looks like an error occured! I am trying my best to solve the issue. Please stay with us. If you entered the wrong city name. Please try again and enter the city name properly without spelling mistakes!! Thank You!", color = bot_embed_color)
             embed.set_footer(text="Possible Error - Rate Limiting or Invalid city")
             await ctx.send(embed=embed)
         else:
@@ -739,7 +739,7 @@ async def meaning(ctx, *args):
             part = meaning.part_of_speech
             word = meaning.word
             usage = meaning.use
-            embed = discord.Embed(title=word + f" [{part}]", description="**" + defination + "**", color=0xffae00)
+            embed = disnake.Embed(title=word + f" [{part}]", description="**" + defination + "**", color=0xffae00)
             embed.set_footer(text=usage)
             await wait.edit(content="", embed=embed)
         except: 
@@ -1113,7 +1113,7 @@ async def lyrics(ctx, *args):
             except:
                 search_lyrics.genius_lyrics(query=track,
                                             api_key="API Key")
-            embed = discord.Embed(title=search_lyrics.title, description="**" + search_lyrics.artist + "**",
+            embed = disnake.Embed(title=search_lyrics.title, description="**" + search_lyrics.artist + "**",
                                   colour=0xffae00)
             lyric = str(str(search_lyrics.lyrics).strip()).split("\n\n")
             for i in lyric:
@@ -1122,7 +1122,7 @@ async def lyrics(ctx, *args):
             try:
                 await wait.edit(embed=embed, content="")
             except:
-                embed = discord.Embed(title=":x: Something went wrong, can't show lyrics. Click here. ",
+                embed = disnake.Embed(title=":x: Something went wrong, can't show lyrics. Click here. ",
                                       url=search_lyrics.url, colour=0xffae00)
                 await wait.edit(embed=embed, content="")
         except:
@@ -1136,7 +1136,7 @@ async def company(ctx, domain):
     if company_name == "None":
       await ctx.reply("Company not found!")
     else:
-      em = discord.Embed(description=f'''
+      em = disnake.Embed(description=f'''
       Company Name: `{str(res['name'])}`
       Domain: `{str(res['domain'])}`
       Founded on: `{str(res['year_founded'])}`
