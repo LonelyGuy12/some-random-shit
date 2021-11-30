@@ -1451,11 +1451,17 @@ async def apod(ctx, choice = None):
     NASA_API_KEY = "MUjKPrycmHKMezXZcA81gCMJV52JbqRGAcLA4e86"
     r = requests.get(f"https://api.nasa.gov/planetary/apod?api_key={NASA_API_KEY}")
     res = r.json()
-    url=res['hdurl']
-    title = res['title']
     explanation = res['explanation']
-    embed = disnake.Embed(title = title, description = explanation, colour = bot_embed_color)
-    embed.set_image(url=url)
+    try:
+        url=res['hdurl']
+        title = res['title']
+        explanation = res['explanation']
+        embed = disnake.Embed(title = title, description = explanation, colour = bot_embed_color)
+        embed.set_image(url=url)
+    except:
+	    url = res['url']
+	    title = res['title']
+	    embed = disnake.Embed(title = title, url = url, description = explanation, colour = bot_embed_color)
     await ctx.reply(embed=embed)
 
 
