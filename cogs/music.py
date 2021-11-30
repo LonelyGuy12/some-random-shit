@@ -17,7 +17,6 @@ import functools
 import itertools
 import math
 import random
-from keep_alive import keep_alive
 
 import disnake as discord
 import youtube_dl
