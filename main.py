@@ -1457,11 +1457,12 @@ async def apod(ctx, choice = None):
         explanation = res['explanation']
         embed = disnake.Embed(title = title, description = explanation, colour = bot_embed_color)
         embed.set_image(url=url)
+	'''
     except:
 	url = res['url']
 	title = res['title']
         explanation = res['explanation']
-	embed = disnake.Embed(title = title, url = url, description = explanation, colour = bot_embed_color)
+	embed = disnake.Embed(title = title, url = url, description = explanation, colour = bot_embed_color)'''
     await ctx.reply(embed=embed)
 
 
