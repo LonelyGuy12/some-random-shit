@@ -501,8 +501,8 @@ class Music(commands.Cog):
                 raise commands.CommandError('Bot is already in a voice channel.')
 
 
-bot = self.Yui
-bot.add_cog(Music(bot))
+self.bot = Yui
+bot.add_cog(Music(Yui))
 
 
 
