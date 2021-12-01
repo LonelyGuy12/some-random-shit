@@ -1,11 +1,7 @@
 {
     "token":"",
     "prefix": "luv ",   
-    "embed_color": "0x4548a8", 
-    "nitro_sniper": true, 
-    "giveaway_sniper": true,
-    "slotbot_sniper": false,
-    "privnote_sniper": false,
+    "embed_color": "0x4548a8",
     "NASA_API_KEY": "MUjKPrycmHKMezXZcA81gCMJV52JbqRGAcLA4e86",
     "stream_url": "https://twitch.tv/dark_phoenix294",
     "tts_language": "en",
