@@ -3,7 +3,7 @@ import disnake
 import disnake as discord
 from typing import *
 from urllib import parse, request
-from disnake.ext.commands import Context
+from disnake.ext.commands import Context, ctx_menus_core
 import re
 import json
 import GetLyrics_ATRS_SelfBot
@@ -12,6 +12,7 @@ from disnake.ext import commands
 import typehint
 from disnake_together import DisnakeTogether
 import requests
+from dotenv import load_dotenv
 import time
 import io
 import random
@@ -23,7 +24,7 @@ from simpcalc import simpcalc
 from bs4 import BeautifulSoup as bs4
 import asyncio
 asyncio.get_event_loop().set_debug(True)
-
+load_dotenv()
 
 with open('config.json') as f:
     config = json.load(f)
@@ -32,6 +33,7 @@ waifuim= {'User-Agent':f'aiohttp/{aiohttp.__version__}; YourAppName'}
 bot_embed_color = 0x4548a8
 prefix = config.get('prefix')
 cuttly_key = config.get('cuttly_key')
+NASA_API_KEY = config.get('NASA_API_KEY')
 token = os.getenv("token")
 cat_key = config.get('cat_key')
 weather_key = config.get('weather_key')
@@ -525,10 +527,7 @@ async def wyr(
     await inter.response.send_message(embed=em)
 
 @Yui.command() 
-async def cat(ctx): 
-    if cat_key == '':
-        print(f"{Fore.RED}[ERROR]: {Fore.YELLOW}Some error there please join our support server and lemme know"+Fore.RESET)
-    else:
+async def cat(ctx):
         try:
             req = requests.get(f"https://api.thecatapi.com/v1/images/search?format=json&x-api-key={cat_key}")
             r = req.json()
@@ -538,10 +537,8 @@ async def cat(ctx):
                 await ctx.send(embed=em)
             except:
                 await ctx.send(str(r[0]["url"]))
-        except Exception as e:
-            print(f"{Fore.RED}[ERROR]: {Fore.YELLOW}{e}"+Fore.RESET)
-        else:
-            print(f"{Fore.RED}[ERROR]: {Fore.YELLOW}{req.text}"+Fore.RESET)
+        except:
+            await ctx.send("Error occured while processing please try again later")
 
 @Yui.command(aliases=['geolocate', 'iptogeo', 'iptolocation', 'ip2geo', 'ip'])
 async def geoip(ctx, *, ipaddr: str = '1.3.3.7'): 
@@ -614,40 +611,21 @@ async def maid(ctx, mentioned_member: disnake.Member = None):
     async with aiohttp.ClientSession() as cs:
 	    async with cs.get("https://api.waifu.im/sfw/maid/?exclude=3867126be8e260b5.jpeg,ca52928d43b30d6a&gif=true",headers=waifuim) as rep:
 		    api= await rep.json()
-		    if rep.status == 200:
-		     	url=api.get('tags')[0].get('images')[0].get('url')
-                em = disnake.Embed()
-                em.set_image(url=res['url'])
-                await ctx.send(embed=em)
-		    else:
-			    error=api["error"]
-                titld = "Error!"
-                main = f''Oops looks like an unexpected error occured please try again after sometime
-                Error :-
-                ```{error}
-                ```''
-                embedVar = disnake.Embed(title=titld, description=main, color=0x00ff00)
-                await ctx.send(embed=embedVar)
+		    url=api.get('tags')[0].get('images')[0].get('url')
+            em = disnake.Embed()
+            em.set_image(url=res['url'])
+            await ctx.send(embed=em)
+
 
 @Yui.command()
 async def waifu(ctx, mentioned_member: disnake.Member = None):
     async with aiohttp.ClientSession() as cs:
 	    async with cs.get("https://api.waifu.im/sfw/waifu/?exclude=3867126be8e260b5.jpeg,ca52928d43b30d6a&gif=true",headers=waifuim) as rep:
 		    api= await rep.json()
-		    if rep.status == 200:
-		       	url=api.get('tags')[0].get('images')[0].get('url')
-                em = disnake.Embed()
-                em.set_image(url=res['url'])
-                await ctx.send(embed=em)
-		    else:
-		        error=api["error"]
-                titld = "Error!"
-                main = f''Oops looks like an unexpected error occured please try again after sometime
-                Error :-
-                ``{error}
-                ```''
-                embedVar = disnake.Embed(title=titld, description=main, color=0x00ff00)
-                await ctx.send(embed=embedVar)
+		    url=api.get('tags')[0].get('images')[0].get('url')
+            em = disnake.Embed()
+            em.set_image(url=res['url'])
+            await ctx.send(embed=em)
 '''
 
 @Yui.command()
@@ -1448,7 +1426,6 @@ async def spotipy(ctx, user: disnake.Member = None):
 
 @Yui.command()
 async def apod(ctx, choice = None):
-    NASA_API_KEY = "MUjKPrycmHKMezXZcA81gCMJV52JbqRGAcLA4e86"
     r = requests.get(f"https://api.nasa.gov/planetary/apod?api_key={NASA_API_KEY}")
     res = r.json()
     explanation = res['explanation']
