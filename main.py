@@ -29,6 +29,9 @@ load_dotenv()
 with open('config.json') as f:
     config = json.load(f)
 
+with open('help.json') as l:
+    helpl = json.load(l)
+
 waifuim= {'User-Agent':f'aiohttp/{aiohttp.__version__}; YourAppName'}
 bot_embed_color = 0x4548a8
 prefix = config.get('prefix')
@@ -1209,6 +1212,14 @@ async def help(ctx, *, cmd = None):
       main = "Hina is a bot made for fun and moderation. It is totally dedicated to the girl I love bot. To view the command list please use `luv help commands`"
       embedVar = disnake.Embed(title=titld, url="https://discord.gg/Tgb5s784ga", description=main, color=0x2a45bf)
       await ctx.send(embed=embedVar)
+    else:
+        try:
+                desc = helpl.get(cmd)
+                embedVar = disnake.Embed(title=cmd, description=desc, color=bot_embed_color)
+                await ctx.reply(embed=embedVar)
+        except:
+            desc = help.get(cmd)
+            
 
 @bot.user_command(name="Avatar") # optional
 async def avatar(inter: disnake.UserCommandInteraction):
