@@ -1213,16 +1213,13 @@ async def help(ctx, *, cmd = None):
       embedVar = disnake.Embed(title=titld, url="https://discord.gg/Tgb5s784ga", description=main, color=0x2a45bf)
       await ctx.send(embed=embedVar)
     else:
-        try:
-                desc = helpl.get(cmd)
-                if desc == None:
-                        embedVar = disnake.Embed(title="Command not found", description="Please check the command name", color=0x2a45bf)
-                        await ctx.reply(embed=embedVar)
-                else:
-                        embedVar = disnake.Embed(title=cmd, description=desc, color=bot_embed_color)
-                        await ctx.reply(embed=embedVar)
-	    except:
-		        pass
+      desc = helpl.get(cmd)
+      if desc == None:
+          embedVar = disnake.Embed(title="Command not found", description="Please check the command name", color=0x2a45bf)
+          await ctx.reply(embed=embedVar)
+      else:
+          embedVar = disnake.Embed(title=cmd, description=desc, color=bot_embed_color)
+          await ctx.reply(embed=embedVar)
 
 @bot.user_command(name="Avatar") # optional
 async def avatar(inter: disnake.UserCommandInteraction):
