@@ -49,12 +49,13 @@ async def on_ready():
 
 @bot.event
 async def on_guild_join(guild):
-    general = find(lambda x: x.name == 'general',  guild.text_channels)
+    general = guild.text_channels[0]
     if general and general.permissions_for(guild.me).send_messages:
         embed=discord.Embed(title="**======== *Thanks For Adding Me!* ========**", description=f"""
         Thanks for adding me to {guild.name}!
-        You can use the `--help` command to get started!
-        """, color=0xd89522)
+        You can use the `luv help` command to get started!
+	I hope we can have a great time together
+        """, color=bot_embed_color)
         await general.send(embed=embed)
 
 @bot.event
