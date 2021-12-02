@@ -1215,11 +1215,12 @@ async def help(ctx, *, cmd = None):
     else:
         try:
                 desc = helpl.get(cmd)
-                embedVar = disnake.Embed(title=cmd, description=desc, color=bot_embed_color)
-                await ctx.reply(embed=embedVar)
-        except:
-            embedVar = disnake.Embed(title="Command not found", description="Please check the command name", color=bot_embed_color)
-            await ctx.reply(embed=embedVar)
+                if desc == None:
+                        embedVar = disnake.Embed(title="Command not found", description="Please check the command name", color=0x2a45bf)
+                        await ctx.reply(embed=embedVar)
+                else:
+                        embedVar = disnake.Embed(title=cmd, description=desc, color=bot_embed_color)
+                        await ctx.reply(embed=embedVar)
             
 
 @bot.user_command(name="Avatar") # optional
