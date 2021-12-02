@@ -1221,8 +1221,8 @@ async def help(ctx, *, cmd = None):
                 else:
                         embedVar = disnake.Embed(title=cmd, description=desc, color=bot_embed_color)
                         await ctx.reply(embed=embedVar)
-	except:
-		pass
+	    except:
+		        pass
 
 @bot.user_command(name="Avatar") # optional
 async def avatar(inter: disnake.UserCommandInteraction):
