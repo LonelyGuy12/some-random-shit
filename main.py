@@ -1213,6 +1213,7 @@ async def help(ctx, *, cmd = None):
       embedVar = disnake.Embed(title=titld, url="https://discord.gg/Tgb5s784ga", description=main, color=0x2a45bf)
       await ctx.send(embed=embedVar)
     else:
+      cmd = cmd.lower()
       desc = helpl.get(cmd)
       if desc == None:
           embedVar = disnake.Embed(title="Command not found", description="Please check the command name", color=0x2a45bf)
