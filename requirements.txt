@@ -13,3 +13,5 @@ youtube_dl
 async-timeout
 python-dotenv
 PyNaCl
+python-math
+lavalink
