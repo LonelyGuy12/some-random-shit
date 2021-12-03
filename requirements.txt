@@ -15,3 +15,13 @@ python-dotenv
 PyNaCl
 python-math
 lavalink
+dnspython
+GitPython
+motor
+websockets
+pyttanko
+redis
+jishaku
+sentry-sdk
+pyfiglet
+pytimeparse
