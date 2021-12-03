@@ -1,10 +1,10 @@
 # This cog is based on https://github.com/Devoxin/Lavalink.py/blob/master/examples/music.py
 
 import  math
-import discord
+import disnake as discord
 import aiohttp
 import lavalink
-from discord.ext import commands
+from disnake.ext import commands
 import classes.exceptions as Exceptions
 from commons.regex import url_rx, track_title_rx
 
