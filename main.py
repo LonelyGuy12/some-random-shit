@@ -1604,6 +1604,6 @@ async def loadall(ctx):
 
 bot.load_extension("cogs.utilities")
 bot.load_extension("cogs.fun")
-#bot.load_extension("cogs.music")
+bot.load_extension("cogs.music")
 bot.load_extension("cogs.EvalCommand")
 bot.run(token)
