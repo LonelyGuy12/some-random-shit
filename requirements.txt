@@ -1,5 +1,6 @@
 git+https://github.com/DisnakeDev/disnake.git
 git+https://github.com/m1raynee/disnake-ext-menus
+git+https://github.com/HarrisAhmed/Wavelink
 ffmpeg-python
 disnake-together
 typehint
@@ -15,9 +16,7 @@ async-timeout
 python-dotenv
 PyNaCl
 python-math
-lavalink
 dnspython
-wavelink
 GitPython
 motor
 websockets
