@@ -318,7 +318,6 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                           'password': 'TODO:ReplaceThisPassword',
                           'identifier': 'MAIN',
                           'region': 'frankfurt',
-                          "secure": "true"
                           }}
 
         for n in nodes.values():
