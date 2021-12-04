@@ -317,6 +317,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                           'rest_uri': 'https://lava.link:80',
                           'password': 'anything as password',
                           'identifier': 'MAIN',
+                          'region': 'us_central',
                           'secure': 'true'
                           }}
 
