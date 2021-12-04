@@ -16,6 +16,7 @@ PyNaCl
 python-math
 lavalink
 dnspython
+wavelink
 GitPython
 motor
 websockets
