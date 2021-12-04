@@ -1,4 +1,5 @@
 git+https://github.com/DisnakeDev/disnake.git
+git+https://github.com/m1raynee/disnake-ext-menus
 ffmpeg-python
 disnake-together
 typehint
