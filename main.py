@@ -42,9 +42,7 @@ cat_key = config.get('cat_key')
 weather_key = config.get('weather_key')
 intents = disnake.Intents().all()
 bitly_key = config.get('bitly_key')
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('Luv', 'Eru', 'eru', 'luv', 'love', 'Love', 'l!', 'e!', 'E!', 'L!'), strip_after_prefix = True, intents = intents, sync_commands_debug=True, case_insensitive=True, enable_debug_events=True 
-
-)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('Luv', 'Eru', 'eru', 'luv', 'love', 'Love', 'l!', 'e!', 'E!', 'L!'), strip_after_prefix = True, intents = intents, sync_commands_debug=True, case_insensitive=True, enable_debug_events=True )
 together_control = DisnakeTogether(bot)
 bot.remove_command('help')
 
