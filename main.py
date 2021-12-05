@@ -40,6 +40,10 @@ prefix = config.get('prefix')
 cuttly_key = config.get('cuttly_key')
 NASA_API_KEY = config.get('NASA_API_KEY')
 token = os.getenv("token")
+if token == None:
+    token = config.get("token")
+else:
+    pass
 cat_key = config.get('cat_key')
 weather_key = config.get('weather_key')
 intents = disnake.Intents().all()
