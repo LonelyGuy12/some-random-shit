@@ -1,4 +1,5 @@
 import os
+#Importing os to load env
 import disnake
 import disnake as discord
 from typing import *
