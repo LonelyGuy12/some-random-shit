@@ -444,7 +444,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
         query = query.strip('<>')
         if not URL_REG.match(query):
-            query = f'ytsearch:{query}'
+            query = f'scsearch:{query}'
 
         tracks = await self.bot.wavelink.get_tracks(query)
         if not tracks:
