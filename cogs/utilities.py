@@ -2,6 +2,8 @@ import disnake as discord
 from disnake.ext import commands
 import random
 import requests
+import bs4
+import wikipedia
 import aiohttp
 bot_embed_color = 0x4548a8
 
@@ -92,6 +94,37 @@ class Utilities(commands.Cog):
           if field['value']:
               em.add_field(name=field['name'], value=field['value'], inline=True)
       return await ctx.send(embed=em)
+
+  @commands.command(aliases=['wikiped', 'wikipedia'])
+  async def wiki(self, ctx, *, query: str):
+      global wikipedia_language
+      wikipedia_language = "en"
+      try:
+          page=wikipedia.page(wikipedia.search(query)[0])
+      except wikipedia.exceptions.DisambiguationError as e:
+          counter=0
+          while page==None:
+              try:
+                  page=wikipedia.page(e.options[counter])
+              except:
+                  counter+=1
+      except IndexError as e:
+          await ctx.send(languages[guild_language.setdefault(str(ctx.guild.id), "en")]["wikipedia_page_error"])
+          print(e)
+          return
+      summary=page.summary.split("\n")[0]
+      if len(summary)>2048:
+          summary=summary[:2045]+"..."
+      embed=discord.Embed(colour=0xfefefe,
+                          title=page.title,
+                          description=summary,
+                          url=page.url,)
+      embed.set_author(name="Wikipedia",
+                      icon_url="https://cdn.discordapp.com/attachments/601676952134221845/799319569025335406/wikipedia.png",
+                      url="https://www.wikipedia.org/")
+      if page.images:
+          embed.set_thumbnail(url=page.images[0])
+      await ctx.send(embed=embed)
 
   @commands.command()
   async def truth(self, ctx, rating = None):
