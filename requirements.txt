@@ -27,3 +27,4 @@ jishaku
 sentry-sdk
 pyfiglet
 pytimeparse
+psutil
