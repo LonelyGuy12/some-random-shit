@@ -45,6 +45,7 @@ if token == None:
 else:
     pass
 cat_key = config.get('cat_key')
+atrs_music_token = config.get('atrs_music_token')
 weather_key = config.get('weather_key')
 intents = disnake.Intents().all()
 bitly_key = config.get('bitly_key')
@@ -1013,8 +1014,23 @@ async def sshot(ctx,url):
    await ctx.send(embed=em)
 
 
-@bot.command(pass_context=True)
+@bot.command(aliases=['lyrixs', 'lyrix', 'lyric'])
 async def lyrics(ctx, *args):
+    track = " ".join(args)
+    wait = await ctx.reply(f":mag: Please hold on, searching for `{track}`")
+    r=requests.get(f'https://atrs-webapis.herokuapp.com/API/lyrics/{atrs_music_token}/{track}')
+    data=r.json()
+    if data['status']=='success':
+        title = data['title']
+        artist = data['mainArtist']
+        lyrics = data['lyrics']
+        source = data['source']
+        embed = disnake.Embed(title=f"**{title}**", description=f"**{artist}**\n\n\n{lyrics}", color=bot_embed_color)
+        embed.set_footer(text=f"Source: {source}")
+        await wait.edit(embed=embed)
+    else:
+        await wait.edit(content=f"Couldn't find any lyrics for `{track}`. Please try giving a more detailed search.")
+'''
     track = " ".join(args)
     user = ctx.author
     for activity in user.activities:
@@ -1048,9 +1064,13 @@ async def lyrics(ctx, *args):
                 await wait.edit(embed=embed, content="")
         except:
             await wait.edit(content=":x: Something went wrong, can't show lyrics ")
+'''
+
+
+
 
 @bot.command()
-async def company(ctx, domain):
+async def company(ctx, *domain):
     r = requests.get(f"https://companyenrichment.abstractapi.com/v1/?api_key=de0b735ecaa547cc9a012c73240fb364&domain={domain}")
     res = r.json()
     company_name = str(res['name'])
