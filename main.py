@@ -45,6 +45,7 @@ if token == None:
 else:
     pass
 cat_key = config.get('cat_key')
+common_footer = config.get('common_footer')
 atrs_music_token = config.get('atrs_music_token')
 weather_key = config.get('weather_key')
 intents = disnake.Intents().all()
@@ -61,7 +62,7 @@ async def on_ready():
 async def on_guild_join(guild):
     general = guild.text_channels[0]
     if general and general.permissions_for(guild.me).send_messages:
-        embed=discord.Embed(title="**======== *Thanks For Adding Me!* ========**", description=f"""
+        embed=disnake.Embed(title="**======== *Thanks For Adding Me!* ========**", description=f"""
         Thanks for adding me to {guild.name}!
         You can use the `luv help` command to get started!
 	I hope we can have a great time together
@@ -74,7 +75,12 @@ async def on_command_error(ctx,error):
     msg='***Still on Cooldown**, please try again in {:.2f}s'.format(error.retry_after)
     await ctx.send(msg)
   elif isinstance(error, commands.MissingRequiredArgument):
+    embed = disnake.Embed(title="**Missing Required Argument**", description=f"{ctx.command.name} requires the following arguments: {error}", color=bot_embed_color)
     await ctx.send(f"Missing arguemnts!! Please try again with proper arguments. Error - {error}")
+  elif isinstance(error, commands.MemberNotFound):
+    embed = disnake.Embed(title="Invalid Member!", description=f"Some error occured happened during handling of that command \nError :- ```html\n{error}```", color=bot_embed_color)
+    embed.set_footer(text="Please try again with proper arguments :)")
+    await ctx.send(embed=embed)
   else:
     raise(error)
 
@@ -207,7 +213,7 @@ async def mute(ctx, member: disnake.Member, *, reason=None):
     await member.send(f" you have been muted from: {guild.name} reason: {reason}")
 
 @bot.command()
-async def kiss(ctx, mentioned_member: disnake.Member = None):
+async def kiss(ctx, mentioned_member: disnake.Member):
     r = requests.get("https://api.waifu.pics/sfw/kiss")
     res = r.json()
     em = disnake.Embed(description=f"**{str(ctx.author.mention)} _kisses_ {str(mentioned_member.mention)}**")    
@@ -230,7 +236,7 @@ async def kiss(
     await inter.response.send_message(embed=em)
 
 @bot.command()
-async def hug(ctx, mentioned_member: disnake.Member = None):
+async def hug(ctx, mentioned_member: disnake.Member):
   try:
     r = requests.get("https://api.waifu.pics/sfw/hug")
     res = r.json()
@@ -455,7 +461,7 @@ async def userinfo(ctx, user: disnake.Member = None):
   embed.add_field(name="Role", value=user.top_role, inline=True)
   embed.add_field(name="Joined At", value=user.joined_at, inline=True)
   embed.set_thumbnail(url=user.display_avatar.url)
-  embed.set_footer(text="By Lonely for bot")
+  embed.set_footer(text=common_footer)
   await ctx.reply(embed=embed)
 
 
@@ -751,7 +757,7 @@ async def setdelay(ctx, seconds: int):
 
 
 
-@bot.command()
+@bot.command(aliases=['youtube', 'yt', 'together'])
 async def startYT(ctx, channel:disnake.VoiceChannel = None):
     if not channel:
         try:
@@ -1302,7 +1308,7 @@ async def truth(
 @bot.command()
 async def invite(ctx):
   embed=discord.Embed(title="Invite me!!", url="https://discord.com/oauth2/authorize?client_id=902740840181542974&permissions=271641726&scope=bot%20applications.commands", description="Invite me to you server and we can have fun together!! I am totally free without any premium plans. I hope we can all be good friends in your server too!!!!!!!! Click on the title of this embed to invite me!", color = 0x242624)
-  embed.set_footer(text="Bot made by Lonely for bot (My Love)")
+  embed.set_footer(text=common_footer)
   await ctx.reply(embed=embed)
 
 @bot.slash_command(
@@ -1313,7 +1319,7 @@ async def invite(
     inter: disnake.ApplicationCommandInteraction
     ):
     embed=disnake.Embed(title="Invite me!!", url="https://discord.com/oauth2/authorize?client_id=902740840181542974&permissions=271641726&scope=bot%20applications.commands", description="Invite me to you server and we can have fun together!! I am totally free without any premium plans. I hope we can all be good friends in your server too!!!!!!!! Click on the title of this embed to invite me!", color = 0x242624)
-    embed.set_footer(text="Bot made by Lonely for bot (My Love)")
+    embed.set_footer(text=common_footer)
     await inter.response.send_message(embed=embed)
 
 @bot.slash_command(
@@ -1547,7 +1553,7 @@ async def ping(ctx):
   Tile = f"Pong! 🏓"
   Desc = f"Here is the bot latency for you - {ping}ms"
   embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
-  embed.set_footer(text="Bot made by Lonely for bot!")
+  embed.set_footer(text=common_footer)
   await ctx.reply(embed=embed)
 
 @bot.slash_command(
@@ -1561,7 +1567,7 @@ async def ping(
     Tile = f"Pong!"
     Desc = f"Here is the bot latency for you - {ping}ms"
     embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
-    embed.set_footer(text="Bot made by Lonely for bot!")
+    embed.set_footer(text=common_footer)
     await inter.response.send_message(embed=embed)
 
 @bot.command()
