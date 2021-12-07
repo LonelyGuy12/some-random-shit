@@ -1011,13 +1011,16 @@ async def spellcast(
 
 @bot.command(aliases=['screenshot', 'ss', 'screen'])
 async def sshot(ctx,url):
-   await ctx.send("Fetching screenshot from the given URL. Please wait........")
+   bruh = await ctx.reply("Fetching screenshot from the given URL. Please wait........")
    r = requests.get(f"https://shot.screenshotapi.net/screenshot?token=V5VWA2H-TJPMV0C-GR13FY9-Y9F2F8Q&url={url}")
    res = r.json()
-   screenshot=res['screenshot']
-   em = disnake.Embed(description="**Here is your screenshot :-**",color = bot_embed_color)
-   em.set_image(url=screenshot)
-   await ctx.send(embed=em)
+   try:
+        screenshot=res['screenshot']
+        em = disnake.Embed(description="**Here is your screenshot :-**",color = bot_embed_color)
+        em.set_image(url=screenshot)
+        await bruh.edit(embed=em, content="")
+   except:
+        await bruh.edit(content="Invalid URL or the URL is not supported by the service")
 
 
 @bot.command(aliases=['lyrixs', 'lyrix', 'lyric'])
