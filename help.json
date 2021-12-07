@@ -31,5 +31,8 @@
     "wyr": "Sends a Would You Rather question",
     "truth": "Sends a Truth question (Will be randomly rated if rating wasn't provided)",
     "dare": "Sends a Dare (Will be randomly rated if rating wasn't provided)",
-    "ping": "Shows the bot's latency"
+    "ping": "Shows the bot's latency",
+    "calculate": "Sends an interactive button calculator!",
+    "eth": "Tells you the current price of Etherum",
+    "btc": "Tells you the current price of Bitcoin"
 }
