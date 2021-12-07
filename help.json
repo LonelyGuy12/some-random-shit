@@ -15,5 +15,14 @@
     "time": "Sends the current time of a certain location",
     "geoip": "Sends details of a certain IP",
     "reverse": "Sends the reverse of a given message. (This is a message-interaction command)",
-    "av": "Sends the avatar of the mentioned user"
+    "av": "Sends the avatar of the mentioned user",
+    "wiki": "Searches Wikipedia for a given query",
+    "bite": "Bites the mentioned user",
+    "youtube": "Gives a link to start the Youtube Together VC party activity!",
+    "weather": "Sends the weather of a given location",
+    "8ball": "Let the fate of 8ball decide the answer to your question",
+    "fishing": "Gives a link to start the Fishington.io VC party game!",
+    "betrayal": "Gives a link to start the Betrayal VC party game!",
+    "spellcast": "Gives a link to start the SpellCast VC party game!",
+    "cuttly": "Creates a cuttly short link with your provided URL"
 }
