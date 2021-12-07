@@ -24,5 +24,12 @@
     "fishing": "Gives a link to start the Fishington.io VC party game!",
     "betrayal": "Gives a link to start the Betrayal VC party game!",
     "spellcast": "Gives a link to start the SpellCast VC party game!",
-    "cuttly": "Creates a cuttly short link with your provided URL"
+    "cuttly": "Creates a cuttly short link with your provided URL",
+    "highfive": "Gives a highfives the mentioned user",
+    "cry": "Cries for you :(",
+    "sshot": "Sends a screenshot of the webpage from the given URL",
+    "wyr": "Sends a Would You Rather question",
+    "truth": "Sends a Truth question (Will be randomly rated if rating wasn't provided)",
+    "dare": "Sends a Dare (Will be randomly rated if rating wasn't provided)",
+    "ping": "Shows the bot's latency"
 }
