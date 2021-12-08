@@ -1238,7 +1238,7 @@ async def help(ctx, *, cmd = None):
         hi5 = "`recipe`, `time`, `company`,`pingweb`,`bitly`,`cuttly`,`eth`,`btc` ,`userinfo` ,`geoip` ,`roleinfo`,`av` ,`lyrics` ,`calculate`, `mac`"
         embed.add_field(name=Field5, value=hi5, inline=False)
         Field6 = "Music :-  (**The music bot is still under testing some things might fail to work or cause errors.**)"
-        hi6 = "`join`,`loop`,`now`,`play`,`queue`,`remove`,`shuffle`,`skip`,`volume`"
+        hi6 = "`connect`,`pause`,`current`,`play`,`queue`,`stop`,`shuffle`,`skip`,`volume`,`resume`,`swap_dj`"
         embed.add_field(name=Field6, value=hi6, inline=False)
         embed.set_footer(text="Note:- VC Activities will work only if the bot has permissions to create invite link")
         await ctx.reply(embed=embed)

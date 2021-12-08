@@ -34,5 +34,13 @@
     "ping": "Shows the bot's latency",
     "calculate": "Sends an interactive button calculator!",
     "eth": "Tells you the current price of Etherum",
-    "btc": "Tells you the current price of Bitcoin"
+    "btc": "Tells you the current price of Bitcoin",
+    "lyrics": "Sends the lyrics of a given song",
+    "play": "Plays a song from YouTube or any other platform!",
+    "equalizer": "Sets the equalizer settings for your current voice channel",
+    "skip": "Skips the current song",
+    "stop": "Stops the current song",
+    "volume": "Sets the volume of the current song",
+    "queue": "Shows the current queue",
+    "resume": "Resumes the current song"
 }
