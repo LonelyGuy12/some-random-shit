@@ -81,6 +81,10 @@ async def on_command_error(ctx,error):
     embed = disnake.Embed(title="Invalid Member!", description=f"Some error occured happened during handling of that command \nError :- ```html\n{error}```", color=bot_embed_color)
     embed.set_footer(text="Please try again with proper arguments :)")
     await ctx.send(embed=embed)
+  elif isinstance(error, commands.NSFWChannelRequired):
+    embed = disnake.Embed(title="NSFW Channel Required!", description=f"This command can only be used in NSFW channels. Please try again in a NSFW channel.", color=bot_embed_color)
+    embed.set_footer(text="Really sorry for the inconvenience :)")
+    await ctx.reply(embed=embed)
   else:
     raise(error)
 
@@ -586,18 +590,13 @@ async def waifu(ctx, mentioned_member: disnake.Member = None):
 '''
 
 @bot.command()
+@commands.is_nsfw()
 async def nsfwwaifu(ctx):
- if ctx.channel.is_nsfw():
    r = requests.get("https://api.waifu.pics/nsfw/waifu")
    res = r.json()
    em = disnake.Embed()
    em.set_image(url=res['url'])
    await ctx.send(embed=em)
- else:
-   titld = "Not a NSFW Channel!!"
-   main = "The command you tried to use can be used only in a NSFW channel. Really sorry for the inconvenience. Please use this command in a NSFW channel"
-   embedVar = disnake.Embed(title=titld, description=main, color=0x00ff00)
-   await ctx.send(embed=embedVar)
 
 @bot.command()
 async def time(ctx, * , location):
@@ -681,46 +680,31 @@ async def meaning(ctx, *args):
             await wait.edit(content=":x: Something went wrong, cannot get get meaning of this ")
 
 @bot.command()
+@commands.is_nsfw()
 async def nsfwneko(ctx):
- if ctx.channel.is_nsfw():
    r = requests.get("https://api.waifu.pics/nsfw/neko")
    res = r.json()
    em = disnake.Embed()
    em.set_image(url=res['url'])
    await ctx.send(embed=em)
- else:
-   titld = "Not a NSFW Channel!!"
-   main = "The command you tried to use can be used only in a NSFW channel. Really sorry for the inconvenience. Please use this command in a NSFW channel"
-   embedVar = disnake.Embed(title=titld, description=main, color=bot_embed_color)
-   await ctx.send(embed=embedVar)
 
 @bot.command()
+@commands.is_nsfw()
 async def nsfwtrap(ctx):
- if ctx.channel.is_nsfw():
    r = requests.get("https://api.waifu.pics/nsfw/trap")
    res = r.json()
    em = disnake.Embed()
    em.set_image(url=res['url'])
    await ctx.send(embed=em)
- else:
-   titld = "Not a NSFW Channel!!"
-   main = "The command you tried to use can be used only in a NSFW channel. Really sorry for the inconvenience. Please use this command in a NSFW channel"
-   embedVar = disnake.Embed(title=titld, description=main, color=bot_embed_color)
-   await ctx.send(embed=embedVar)
 
 @bot.command()
+@commands.is_nsfw()
 async def blowjob(ctx):
- if ctx.channel.is_nsfw():
    r = requests.get("https://api.waifu.pics/nsfw/blowjob")
    res = r.json()
    em = disnake.Embed()
    em.set_image(url=res['url'])
    await ctx.send(embed=em)
- else:
-   titld = "Not a NSFW Channel!!"
-   main = "The command you tried to use can be used only in a NSFW channel. Really sorry for the inconvenience. Please use this command in a NSFW channel"
-   embedVar = disnake.Embed(title=titld, description=main, color=bot_embed_color)
-   await ctx.send(embed=embedVar)
 
 
 @bot.command()
