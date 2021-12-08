@@ -590,15 +590,6 @@ async def waifu(ctx, mentioned_member: disnake.Member = None):
 '''
 
 @bot.command()
-@commands.is_nsfw()
-async def nsfwwaifu(ctx):
-   r = requests.get("https://api.waifu.pics/nsfw/waifu")
-   res = r.json()
-   em = disnake.Embed()
-   em.set_image(url=res['url'])
-   await ctx.send(embed=em)
-
-@bot.command()
 async def time(ctx, * , location):
     details = location.replace(" ", "+")
     r = requests.get(f"https://timezone.abstractapi.com/v1/current_time/?api_key=c083fc7d4cb14170ba7f6edf88a4d257&location={details}")
@@ -678,33 +669,6 @@ async def meaning(ctx, *args):
             await wait.edit(content="", embed=embed)
         except: 
             await wait.edit(content=":x: Something went wrong, cannot get get meaning of this ")
-
-@bot.command()
-@commands.is_nsfw()
-async def nsfwneko(ctx):
-   r = requests.get("https://api.waifu.pics/nsfw/neko")
-   res = r.json()
-   em = disnake.Embed()
-   em.set_image(url=res['url'])
-   await ctx.send(embed=em)
-
-@bot.command()
-@commands.is_nsfw()
-async def nsfwtrap(ctx):
-   r = requests.get("https://api.waifu.pics/nsfw/trap")
-   res = r.json()
-   em = disnake.Embed()
-   em.set_image(url=res['url'])
-   await ctx.send(embed=em)
-
-@bot.command()
-@commands.is_nsfw()
-async def blowjob(ctx):
-   r = requests.get("https://api.waifu.pics/nsfw/blowjob")
-   res = r.json()
-   em = disnake.Embed()
-   em.set_image(url=res['url'])
-   await ctx.send(embed=em)
 
 
 @bot.command()
@@ -1622,6 +1586,7 @@ async def loadall(ctx):
                 await ctx.send(f"Loaded `{filename[:-3]}` successfully!")
 
 bot.load_extension("cogs.utilities")
+bot.load_extension("cogs.nsfw")
 bot.load_extension("cogs.fun")
 bot.load_extension("cogs.music")
 bot.load_extension("cogs.EvalCommand")
