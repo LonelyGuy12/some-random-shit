@@ -47,5 +47,45 @@ class NSFW(commands.Cog):
     em.set_image(url=res['url'])
     await ctx.send(embed=em)
 
+  @commands.command(aliases = ["nass", "pussy"])
+  @commands.is_nsfw()
+  async def ass(self, ctx):
+    r = requests.get("https://api.waifu.im/nsfw/ass")
+    res = r.json()
+    em = disnake.Embed()
+    gif = res['images'][0]['url']
+    em.set_image(url=gif)
+    await ctx.send(embed=em)
+
+  @commands.command(aliases = ["boob", "boobs"])
+  @commands.is_nsfw()
+  async def oppai(self, ctx):
+    r = requests.get("https://api.waifu.im/nsfw/oppai")
+    res = r.json()
+    em = disnake.Embed()
+    gif = res['images'][0]['url']
+    em.set_image(url=gif)
+    await ctx.send(embed=em)
+
+  @commands.command(aliases = ["henta", "hent"])
+  @commands.is_nsfw()
+  async def hentai(self, ctx):
+    r = requests.get("https://api.waifu.im/nsfw/hentai")
+    res = r.json()
+    em = disnake.Embed()
+    gif = res['images'][0]['url']
+    em.set_image(url=gif)
+    await ctx.send(embed=em)
+
+  @commands.command(aliases = ["nmaid", "nsfmaid"])
+  @commands.is_nsfw()
+  async def nsfwmaid(self, ctx):
+    r = requests.get("https://api.waifu.im/nsfw/maid")
+    res = r.json()
+    em = disnake.Embed()
+    gif = res['images'][0]['url']
+    em.set_image(url=gif)
+    await ctx.send(embed=em)
+
 def setup(bot):
   bot.add_cog(NSFW(bot))
