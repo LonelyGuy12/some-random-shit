@@ -270,22 +270,6 @@ async def hug(
     await inter.response.send_message(embed=em)
 
 @bot.command()
-async def recipe(ctx, *, food_name):
-    food = food_name.replace(" ", "+")
-    api_url = "https://api.edamam.com/api/recipes/v2?type=public&q=" + food + "&app_id=6c255cd9&app_key=%205962a391f3b2c29e43c8c6af5e9fa2c9%09"
-    async with aiohttp.ClientSession() as session:
-        async with session.get(api_url) as resp:
-            res = await resp.json()
-    ing = res['hits'][0]['recipe']['ingredients']
-    naam = res["hits"][0]["recipe"]["label"]
-    url = res["hits"][0]["recipe"]["url"]
-    inge = ""
-    for ingredient in ing:
-        inge += f"{ingredient['text']}\n-------\n"
-    embed = disnake.Embed(title=naam, url=url, description=inge, color=bot_embed_color)
-    await ctx.reply(embed=embed)
-
-@bot.command()
 async def cuddle(ctx, mentioned_member: disnake.Member = None):
   try:
     r = requests.get("https://api.waifu.pics/sfw/cuddle")
@@ -589,20 +573,6 @@ async def waifu(ctx, mentioned_member: disnake.Member = None):
             await ctx.send(embed=em)
 '''
 
-@bot.command()
-async def time(ctx, * , location):
-    details = location.replace(" ", "+")
-    r = requests.get(f"https://timezone.abstractapi.com/v1/current_time/?api_key=c083fc7d4cb14170ba7f6edf88a4d257&location={details}")
-    res = r.json()
-    timezone_location = str(res['timezone_location'])
-    raw_time = str(res['datetime'])
-    datetime_time = datetime.strptime(raw_time, "%Y-%m-%d %H:%M:%S")
-    time = str(datetime_time.strftime("%I:%M %p"))
-    date = str(datetime_time.strftime("%d %B %Y"))
-    embedVar = disnake.Embed(title=f"Time in {location} is {time}", description=f'''{date}
-     Timezone - {timezone_location}''', color=bot_embed_color)
-    embedVar.set_thumbnail(url="https://i.pinimg.com/originals/26/be/b0/26beb09153b8df233d82e66bef3edfbb.jpg")
-    await ctx.send(embed=embedVar)
 
 @bot.command()
 async def weather(ctx, *, city):
@@ -1211,16 +1181,6 @@ async def avatar(inter: disnake.UserCommandInteraction):
     emb = disnake.Embed(title=f"{inter.target}'s avatar")
     emb.set_image(url=inter.target.display_avatar.url)
     await inter.response.send_message(embed=emb)
-
-@bot.command()
-async def test(ctx, location):
-    details = "+".join(location)
-    r = requests.get(f"https://timezone.abstractapi.com/v1/current_time/?api_key=c083fc7d4cb14170ba7f6edf88a4d257&location={details}")
-    print(r.content)
-    print(r.json())
-    res = r.json()
-    print(res)
-    await ctx.send(res)
 
 @bot.command()
 async def searchyoutube(ctx, *, search):
