@@ -1,6 +1,7 @@
 {
     "token":"",
     "prefix": "luv ",   
+    "timezone_api_key": "c083fc7d4cb14170ba7f6edf88a4d257",
     "embed_color": "0x4548a8",
     "NASA_API_KEY": "MUjKPrycmHKMezXZcA81gCMJV52JbqRGAcLA4e86",
     "stream_url": "https://twitch.tv/dark_phoenix294",
@@ -10,5 +11,7 @@
     "bitly_key": "64a148b32cc3a67fa3357b22da9c472691084363",
     "cat_key": "9e15529f-ae50-439b-bdba-bc124f50a3dd",
     "weather_key": "d48346eecbc6acaf2b18594541446d91",
-    "cuttly_key": "6e606800cdcdeec2823cdd3afa33ea6ef75c7"
+    "cuttly_key": "6e606800cdcdeec2823cdd3afa33ea6ef75c7",
+    "edamam_api_recipe_app_key": "5962a391f3b2c29e43c8c6af5e9fa2c9",
+    "edamam_api_recipe_app_id": "6c255cd9"
 }
