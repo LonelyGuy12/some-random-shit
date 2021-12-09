@@ -106,5 +106,25 @@ class NSFW(commands.Cog):
     em.set_image(url=gif)
     await ctx.send(embed=em)
 
+  @commands.command(aliases = ["milfs"])
+  @commands.is_nsfw()
+  async def milf(self, ctx):
+    r = requests.get("https://api.waifu.im/nsfw/milf")
+    res = r.json()
+    em = disnake.Embed()
+    gif = res['images'][0]['url']
+    em.set_image(url=gif)
+    await ctx.send(embed=em)
+
+  @commands.command(aliases = ["uniforms", "uniformm"])
+  @commands.is_nsfw()
+  async def uniform(self, ctx):
+    r = requests.get("https://api.waifu.im/nsfw/uniform")
+    res = r.json()
+    em = disnake.Embed()
+    gif = res['images'][0]['url']
+    em.set_image(url=gif)
+    await ctx.send(embed=em)
+
 def setup(bot):
   bot.add_cog(NSFW(bot))
