@@ -1,3 +1,4 @@
+
 import asyncio
 import async_timeout
 import copy
@@ -311,12 +312,12 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             for node in previous.values():
                 await node.destroy()
 
-        nodes = {'MAIN': {'host': 'lavalink.eu',
-                          'port': 2333,
-                          'rest_uri': 'http://lavalink.eu:2333',
-                          'password': 'Raccoon',
+        nodes = {'MAIN': {'host': 'lava.devin-dev.xyz',
+                          'port': 3888,
+                          'rest_uri': 'http://lava.devin-dev.xyz:3888',
+                          'password': 'ayraiscute',
                           'identifier': 'MAIN',
-                          'region': 'eu',
+                          'region': 'germany',
                           }}
 
         for n in nodes.values():
