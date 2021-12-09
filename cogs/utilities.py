@@ -1,11 +1,22 @@
 import disnake as discord
+import disnake
 from disnake.ext import commands
 import random
 import requests
+import json
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 import bs4
 import wikipedia
 import aiohttp
 bot_embed_color = 0x4548a8
+
+with open('config.json') as f:
+    config = json.load(f)
+
+timezone_api_key = config.get('timezone_api_key')
+edamam_api_recipe_app_id = config.get('edamam_api_recipe_app_id')
+edamam_api_recipe_app_key = config.get('edamam_api_recipe_app_key')
 
 class Utilities(commands.Cog):
 
@@ -68,6 +79,38 @@ class Utilities(commands.Cog):
       embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
       embed.set_thumbnail(url=f"{ctx.guild.icon}")
       await ctx.reply(embed=embed)
+
+  @commands.command(aliases = ["timezone", "timing"])
+  async def time(self, ctx, * , location):
+    details = location.replace(" ", "+")
+    r = requests.get(f"https://timezone.abstractapi.com/v1/current_time/?api_key={timezone_api_key}&location={details}")
+    res = r.json()
+    timezone_location = str(res['timezone_location'])
+    raw_time = str(res['datetime'])
+    datetime_time = datetime.strptime(raw_time, "%Y-%m-%d %H:%M:%S")
+    time = str(datetime_time.strftime("%I:%M %p"))
+    date = str(datetime_time.strftime("%d %B %Y"))
+    embedVar = disnake.Embed(title=f"Time in {location} is {time}", description=f'''{date}\nTimezone - {timezone_location}''', color=bot_embed_color)
+    embedVar.set_thumbnail(url="https://i.pinimg.com/originals/26/be/b0/26beb09153b8df233d82e66bef3edfbb.jpg")
+    await ctx.reply(embed=embedVar)
+
+  @commands.command()
+  async def recipe(self, ctx, *, food_name):
+    food = food_name.replace(" ", "+")
+    api_url = f"https://api.edamam.com/api/recipes/v2?type=public&q=" + food + "&app_id=6c255cd9&app_key=5962a391f3b2c29e43c8c6af5e9fa2c9"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(api_url) as resp:
+            res = await resp.json()
+    ing = res['hits'][0]['recipe']['ingredients']
+    naam = res["hits"][0]["recipe"]["label"]
+    url = res["hits"][0]["recipe"]["url"]
+    image = res["hits"][0]["recipe"]["image"]
+    inge = ""
+    for ingredient in ing:
+        inge += f"{ingredient['text']}\n-------\n"
+    embed = disnake.Embed(title=naam, url=url, description=inge, color=bot_embed_color)
+    embed.set_thumbnail(url=image)
+    await ctx.reply(embed=embed)
 
 
   @commands.command(aliases=['geolocate', 'iptogeo', 'iptolocation', 'ip2geo', 'ip'])
