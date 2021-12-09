@@ -1,4 +1,3 @@
-import disnake as discord
 import disnake
 from disnake.ext import commands
 import random
@@ -81,6 +80,46 @@ class NSFW(commands.Cog):
   @commands.is_nsfw()
   async def nsfwmaid(self, ctx):
     r = requests.get("https://api.waifu.im/nsfw/maid")
+    res = r.json()
+    em = disnake.Embed()
+    gif = res['images'][0]['url']
+    em.set_image(url=gif)
+    await ctx.send(embed=em)
+
+  @commands.command(aliases = ["selfie", "nsfwselfies"])
+  @commands.is_nsfw()
+  async def selfies(self, ctx):
+    r = requests.get("https://api.waifu.im/nsfw/selfies")
+    res = r.json()
+    em = disnake.Embed()
+    gif = res['images'][0]['url']
+    em.set_image(url=gif)
+    await ctx.send(embed=em)
+
+  @commands.command(aliases = ["nsfworal", "noral"])
+  @commands.is_nsfw()
+  async def oral(self, ctx):
+    r = requests.get("https://api.waifu.im/nsfw/oral")
+    res = r.json()
+    em = disnake.Embed()
+    gif = res['images'][0]['url']
+    em.set_image(url=gif)
+    await ctx.send(embed=em)
+
+  @commands.command(aliases = ["milfs"])
+  @commands.is_nsfw()
+  async def milf(self, ctx):
+    r = requests.get("https://api.waifu.im/nsfw/milf")
+    res = r.json()
+    em = disnake.Embed()
+    gif = res['images'][0]['url']
+    em.set_image(url=gif)
+    await ctx.send(embed=em)
+
+  @commands.command(aliases = ["uniforms", "uniformm"])
+  @commands.is_nsfw()
+  async def uniform(self, ctx):
+    r = requests.get("https://api.waifu.im/nsfw/uniform")
     res = r.json()
     em = disnake.Embed()
     gif = res['images'][0]['url']

@@ -1180,7 +1180,7 @@ async def help(ctx, *, cmd = None):
         hi3 = "`startYT`,`chess`,`poker`,`betrayal`,`fishing`, `lettertile`, `wordsnack`, `doodlecrew`"
         embed.add_field(name=Field3, value=hi3, inline=False)
         Field4 = "NSFW :-"
-        hi4 = "||`nsfwwaifu`,`nsfwneko`,`blowjob`, `nsfwtrap`||"
+        hi4 = "||`nsfwwaifu`,`nsfwneko`,`blowjob`, `nsfwtrap`, `oppai`, `ass`, `hentai`, `nsfwmaid`, `selfies`, `oral`, `uniform`, `milf`||"
         embed.add_field(name=Field4, value=hi4, inline=False)
         Field5 = "Utilities :-"
         hi5 = "`recipe`, `time`, `company`,`pingweb`,`bitly`,`cuttly`,`eth`,`btc` ,`userinfo` ,`geoip` ,`roleinfo`,`av` ,`lyrics` ,`calculate`, `mac`"
