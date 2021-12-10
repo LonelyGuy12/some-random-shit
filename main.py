@@ -40,6 +40,7 @@ waifuim= {'User-Agent':f'aiohttp/{aiohttp.__version__}; YourAppName'}
 
 prefix = config.get('prefix')
 cuttly_key = config.get('cuttly_key')
+bot_embed_color = 0x4548a8
 NASA_API_KEY = config.get('NASA_API_KEY')
 token = os.getenv("token")
 if token == None:
