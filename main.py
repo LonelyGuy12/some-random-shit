@@ -36,7 +36,7 @@ with open('help.json') as l:
     helpl = json.load(l)
 
 waifuim= {'User-Agent':f'aiohttp/{aiohttp.__version__}; YourAppName'}
-bot_embed_color = 0x4548a8
+
 prefix = config.get('prefix')
 cuttly_key = config.get('cuttly_key')
 NASA_API_KEY = config.get('NASA_API_KEY')
@@ -217,14 +217,6 @@ async def mute(ctx, member: disnake.Member, *, reason=None):
     await member.add_roles(mutedRole, reason=reason)
     await member.send(f" you have been muted from: {guild.name} reason: {reason}")
 
-@bot.command()
-async def kiss(ctx, mentioned_member: disnake.Member):
-    r = requests.get("https://api.waifu.pics/sfw/kiss")
-    res = r.json()
-    em = disnake.Embed(description=f"**{str(ctx.author.mention)} _kisses_ {str(mentioned_member.mention)}**")    
-    em.set_image(url=res['url'])
-    await ctx.send(embed=em)
-
 @bot.slash_command(
     name="kiss",
     description="Kisses the given member😘"
@@ -301,14 +293,6 @@ async def cuddle(
     em.set_image(url=res['url'])
     await inter.response.send_message(embed=em)
 
-@bot.command()
-async def pat(ctx, mentioned_member: disnake.Member = None):
-    r = requests.get("https://api.waifu.pics/sfw/pat")
-    res = r.json()
-    em = disnake.Embed(description=f"**{str(ctx.author.mention)} _pats_ {str(mentioned_member.mention)}**") 
-    em.set_image(url=res['url'])
-    await ctx.send(embed=em)
-
 
 @bot.command()
 async def cry(ctx):
@@ -318,13 +302,6 @@ async def cry(ctx):
     em.set_image(url=res['url'])
     await ctx.send(embed=em)
 
-@bot.command()
-async def highfive(ctx, mentioned_member: disnake.Member = None):
-    r = requests.get("https://api.waifu.pics/sfw/highfive")
-    res = r.json()
-    em = disnake.Embed(description=f"**{str(ctx.author.mention)} _gives a highfive to_ {str(mentioned_member.mention)}**") 
-    em.set_image(url=res['url'])
-    await ctx.send(embed=em)
 
 @bot.slash_command(
     name="highfive",
@@ -1551,4 +1528,5 @@ bot.load_extension("cogs.nsfw")
 bot.load_extension("cogs.fun")
 bot.load_extension("cogs.music")
 bot.load_extension("cogs.EvalCommand")
+bot.load_extension("cogs.roleplay")
 bot.run(token)
