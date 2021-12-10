@@ -30,7 +30,7 @@ class Roleplay(commands.Cog):
     em.set_image(url=res['url'])
     await ctx.reply(embed=em)
 
-  @commands.command(aliases=['kissing', "kisss"])
+  @commands.command(aliases=['hfive', "hfv"])
   async def highfive(self, ctx, mentioned_member: disnake.Member):
     r = requests.get("https://api.waifu.pics/sfw/kiss")
     res = r.json()
