@@ -28,6 +28,7 @@ import aiohttp
 import bs4
 from simpcalc import simpcalc 
 from bs4 import BeautifulSoup as bs4
+#Importing BeuatifulSoup from bs4 as bs4 for web scraping
 import asyncio
 asyncio.get_event_loop().set_debug(True)
 load_dotenv()#Loading the env
