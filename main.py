@@ -16,6 +16,7 @@ from disnake.ext import commands
 import typehint
 from disnake_together import DisnakeTogether
 import requests
+#To pull requests from APIs
 from dotenv import load_dotenv
 import time
 import io
