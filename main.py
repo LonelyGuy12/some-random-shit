@@ -20,6 +20,7 @@ import requests
 #To pull requests from APIs
 from dotenv import load_dotenv
 import time
+#Importing the time module to work with time
 import io
 import random
 from datetime import datetime
