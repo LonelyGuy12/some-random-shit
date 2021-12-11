@@ -12,6 +12,7 @@ import json
 import GetLyrics_ATRS_SelfBot
 #Importing the lyrics scraper
 from disnake.ext.commands.params import Param
+#Importing Param from disnake to take parameters
 from disnake.ext import commands
 import typehint
 from disnake_together import DisnakeTogether
