@@ -29,6 +29,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import aiohttp
 import bs4
+#For parsing webpages
 from simpcalc import simpcalc 
 from bs4 import BeautifulSoup as bs4
 #Importing BeuatifulSoup from bs4 as bs4 for web scraping
