@@ -9,6 +9,7 @@ from urllib import parse, request
 from disnake.ext.commands import Context, ctx_menus_core
 import re
 import json
+#Importing json to pull json data
 import GetLyrics_ATRS_SelfBot
 #Importing the lyrics scraper
 from disnake.ext.commands.params import Param
