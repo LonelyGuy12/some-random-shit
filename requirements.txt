@@ -21,7 +21,6 @@ dnspython
 GitPython
 motor
 websockets
-pyttanko
 jishaku
 sentry-sdk
 pyfiglet
