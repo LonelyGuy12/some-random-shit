@@ -1205,7 +1205,7 @@ async def truth(
 
 @bot.command()
 async def invite(ctx):
-  embed=disnake.Embed(title="Invite me!!", url="https://discord.com/oauth2/authorize?client_id=902740840181542974&permissions=271641726&scope=bot%20applications.commands", description="Invite me to you server and we can have fun together!! I am totally free without any premium plans. I hope we can all be good friends in your server too!!!!!!!! Click on the title of this embed to invite me!", color = 0x242624)
+  embed=disnake.Embed(title="Invite me!!", url="https://eru-chitanda.github.io/invite/", description="Invite me to you server and we can have fun together!! I am totally free without any premium plans. I hope we can all be good friends in your server too!!!!!!!! Click on the title of this embed to invite me!", color = 0x242624)
   embed.set_footer(text=common_footer)
   await ctx.reply(embed=embed)
 
@@ -1216,7 +1216,7 @@ async def invite(ctx):
 async def invite(
     inter: disnake.ApplicationCommandInteraction
     ):
-    embed=disnake.Embed(title="Invite me!!", url="https://discord.com/oauth2/authorize?client_id=902740840181542974&permissions=271641726&scope=bot%20applications.commands", description="Invite me to you server and we can have fun together!! I am totally free without any premium plans. I hope we can all be good friends in your server too!!!!!!!! Click on the title of this embed to invite me!", color = 0x242624)
+    embed=disnake.Embed(title="Invite me!!", url="https://eru-chitanda.github.io/invite/", description="Invite me to you server and we can have fun together!! I am totally free without any premium plans. I hope we can all be good friends in your server too!!!!!!!! Click on the title of this embed to invite me!", color = 0x242624)
     embed.set_footer(text=common_footer)
     await inter.response.send_message(embed=embed)
 
