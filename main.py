@@ -85,8 +85,8 @@ async def on_command_error(ctx,error):
     msg='***Still on Cooldown**, please try again in {:.2f}s'.format(error.retry_after)
     await ctx.send(msg)
   elif isinstance(error, commands.MissingRequiredArgument):
-    embed = disnake.Embed(title="**Missing Required Argument**", description=f"{ctx.command.name} requires the following arguments: {error}", color=bot_embed_color)
-    await ctx.send(f"Missing arguemnts!! Please try again with proper arguments. Error - {error}")
+    embed = disnake.Embed(title="**Missing Required Argument!**", description=f"Command `{ctx.command.name}` requires the following arguments : ```html\n{error}```", color=bot_embed_color)
+    await ctx.send(embed=embed)
   elif isinstance(error, commands.MemberNotFound):
     embed = disnake.Embed(title="Invalid Member!", description=f"Some error occured happened during handling of that command \nError :- ```html\n{error}```", color=bot_embed_color)
     embed.set_footer(text="Please try again with proper arguments :)")
