@@ -630,7 +630,7 @@ async def meaning(ctx, *args):
 
 @bot.command()
 async def game(ctx, *, message):
-  if ctx.author.id in [738609666505834517,840411506646319124,827123687055949824]:
+  if ctx.author.id in [738609666505834517,840411506646319124,827123687055949824,886120777630486538]:
      await bot.change_presence(activity=disnake.Activity(type=disnake.ActivityType.playing, name=message))
      await ctx.reply("Successfully changed")
   else:
@@ -641,7 +641,7 @@ async def game(ctx, *, message):
 
 @bot.command()
 async def listening(ctx, *, message):
-  if ctx.author.id in [738609666505834517,840411506646319124,827123687055949824]:
+  if ctx.author.id in [738609666505834517,840411506646319124,827123687055949824,886120777630486538]:
      await bot.change_presence(activity=disnake.Activity(type=disnake.ActivityType.listening, name=message))
   else:
      titld = "You don't have permissions?"
@@ -991,7 +991,7 @@ async def company(ctx, *domain):
     if company_name == "None":
       await ctx.reply("Company not found!")
     else:
-      em = discord.Embed(description=f'''
+      em = disnake.Embed(description=f'''
       Company Name: `{str(res['name'])}`
       Domain: `{str(res['domain'])}`
       Founded on: `{str(res['year_founded'])}`
@@ -1126,7 +1126,7 @@ async def help(ctx, *, cmd = None):
     if cmd == "commands":
         Tile = "Here are all the commands for you :-"
         Desc = "I hope you Enjoy!!!"
-        embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
+        embed=disnake.Embed(title=Tile, description=Desc, color=bot_embed_color)
         Field1 = "Fun :-"
         hi = f"`kiss`,`hug`,`cuddle`,`pat`,`highfive`,`kickem`,`kill`,`bully`,`bite`,`tickle`,`cat`,`8ball`,`wyr`,`slap`,`cry`,`truth`,`dare`, `tic`"
         embed.add_field(name=Field1, value=hi, inline=False)
@@ -1190,7 +1190,7 @@ async def truth(
       res = r.json()
       Tile = f"Here is a truth for you"
       Desc = res['question']
-      embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
+      embed=disnake.Embed(title=Tile, description=Desc, color=bot_embed_color)
       await inter.response.send_message(embed=embed)
     else:
       try: 
@@ -1198,14 +1198,14 @@ async def truth(
         res = r.json()
         Tile = f"Here is a {rating} rated question for you"
         Desc = res['question']
-        embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
+        embed=disnake.Embed(title=Tile, description=Desc, color=bot_embed_color)
         await inter.response.send_message(embed=embed)
       except:
         await inter.response.send_message("Please send a valid rating!! Valid parameters are `pg`,`pg13`,`r`")
 
 @bot.command()
 async def invite(ctx):
-  embed=discord.Embed(title="Invite me!!", url="https://discord.com/oauth2/authorize?client_id=902740840181542974&permissions=271641726&scope=bot%20applications.commands", description="Invite me to you server and we can have fun together!! I am totally free without any premium plans. I hope we can all be good friends in your server too!!!!!!!! Click on the title of this embed to invite me!", color = 0x242624)
+  embed=disnake.Embed(title="Invite me!!", url="https://discord.com/oauth2/authorize?client_id=902740840181542974&permissions=271641726&scope=bot%20applications.commands", description="Invite me to you server and we can have fun together!! I am totally free without any premium plans. I hope we can all be good friends in your server too!!!!!!!! Click on the title of this embed to invite me!", color = 0x242624)
   embed.set_footer(text=common_footer)
   await ctx.reply(embed=embed)
 
@@ -1233,7 +1233,7 @@ async def calculate(
 @bot.command()
 async def mac(ctx, mac):
     r = requests.get('http://api.macvendors.com/' + mac)
-    em = discord.Embed(title='MAC Lookup Result', description=r.text, colour=0xDEADBF)
+    em = disnake.Embed(title='MAC Lookup Result', description=r.text, colour=0xDEADBF)
     await ctx.send(embed=em)
 
 @bot.slash_command(
@@ -1263,7 +1263,7 @@ async def spotipy(ctx, user: disnake.Member = None):
     await ctx.send(f"{user.name} is not listening to Spotify")
     return
   else:
-    embed = discord.Embed(title=f"{user.name}'s Spotify", color=bot_embed_color)
+    embed = disnake.Embed(title=f"{user.name}'s Spotify", color=bot_embed_color)
     embed.add_field(name="Song", value=spot.title)
     embed.add_field(name="Artist", value=spot.artist)
     embed.add_field(name="Album", value=spot.album)
@@ -1294,7 +1294,7 @@ async def question(ctx):
   r = requests.get('https://opentdb.com/api.php?amount=1')
   res = json.loads(r.text)
   Quote = res[0]['question']
-  em = discord.Embed(title=Quote, description="Bruh",colour=0xDEADBF)
+  em = disnake.Embed(title=Quote, description="Bruh",colour=0xDEADBF)
   await ctx.send(embed=em)
 
 @bot.command()
@@ -1349,7 +1349,7 @@ async def dare(
       res = r.json()
       Tile = f"Here is a dare for you"
       Desc = res['question']
-      embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
+      embed=disnake.Embed(title=Tile, description=Desc, color=bot_embed_color)
       await inter.response.send_message(embed=embed)
     else:
       try: 
@@ -1357,7 +1357,7 @@ async def dare(
         res = r.json()
         Tile = f"Here is a {rating} rated dare for you"
         Desc = res['question']
-        embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
+        embed=disnake.Embed(title=Tile, description=Desc, color=bot_embed_color)
         await inter.response.send_message(embed=embed)
       except:
         await inter.response.send_message("Please send a valid rating!! Valid parameters are `pg`,`pg13`,`r`")
@@ -1369,7 +1369,7 @@ async def nhie(ctx, rating = None):
     res = r.json()
     Tile = f"Here is a never have I ever question for you "
     Desc = res['question']
-    embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
+    embed=disnake.Embed(title=Tile, description=Desc, color=bot_embed_color)
     await ctx.send(embed=embed)
   else:
     try: 
@@ -1404,7 +1404,7 @@ async def nhie(
         res = r.json()
         Tile = f"Here is a {rating} rated Never Have I Ever for you"
         Desc = res['question']
-        embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
+        embed=disnake.Embed(title=Tile, description=Desc, color=bot_embed_color)
         await inter.response.send_message(embed=embed)
       except:
         await inter.response.send_message("Please send a valid rating!! Valid parameters are `pg`,`pg13`,`r`")
@@ -1415,7 +1415,7 @@ async def inspire(ctx):
     res = json.loads(r.text)
     Quote = res[0] ['q'] + " - " + res [0] ['a']
     Tile = "Here is a random generated quote for you  :-"
-    embed=discord.Embed(title=Tile, description=Quote, color=bot_embed_color)
+    embed=disnake.Embed(title=Tile, description=Quote, color=bot_embed_color)
     await ctx.send(embed=embed)
 
 @bot.slash_command(
@@ -1429,7 +1429,7 @@ async def inspire(
     res = json.loads(r.text)
     Quote = res[0] ['q'] + " - " + res [0] ['a']
     Tile = "Here is a random generated quote for you  :-"
-    embed=discord.Embed(title=Tile, description=Quote, color=bot_embed_color)
+    embed=disnake.Embed(title=Tile, description=Quote, color=bot_embed_color)
     await inter.response.send_message(embed=embed)
 
 @bot.command()
@@ -1450,7 +1450,7 @@ async def ping(ctx):
   ping = round(bot.latency * 1000)
   Tile = f"Pong! 🏓"
   Desc = f"Here is the bot latency for you - {ping}ms"
-  embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
+  embed=disnake.Embed(title=Tile, description=Desc, color=bot_embed_color)
   embed.set_footer(text=common_footer)
   await ctx.reply(embed=embed)
 
@@ -1464,7 +1464,7 @@ async def ping(
     ping = round(bot.latency * 1000)
     Tile = f"Pong!"
     Desc = f"Here is the bot latency for you - {ping}ms"
-    embed=discord.Embed(title=Tile, description=Desc, color=bot_embed_color)
+    embed=disnake.Embed(title=Tile, description=Desc, color=bot_embed_color)
     embed.set_footer(text=common_footer)
     await inter.response.send_message(embed=embed)
 
