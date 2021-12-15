@@ -1143,7 +1143,7 @@ async def help(ctx, *, cmd = None):
     elif cmd == None:
       titld = "Need Help??"
       main = "Hina is a bot made for fun and moderation. It is totally dedicated to the girl I love bot. To view the command list please use `luv help commands`"
-      embedVar = disnake.Embed(title=titld, url="https://discord.gg/Tgb5s784ga", description=main, color=0x2a45bf)
+      embedVar = disnake.Embed(title=titld, url="https://eru-chitanda.github.io/server/", description=main, color=0x2a45bf)
       await ctx.send(embed=embedVar)
     else:
       cmd = cmd.lower()
@@ -1489,7 +1489,7 @@ async def devintroduce(ctx):
     I am ~~single~~ taken by Skyy xD
     Personality Type - ISFP - T :)
     Glad to see y'all have an amazing day''', color = bot_embed_color)
-    embed.set_author(name=f"{ctx.author.name}", url="https://discord.gg/ANj8Mz6fy4", icon_url="https://cdn.discordapp.com/attachments/900226775458652270/910943017299497010/IMG_0078.png")
+    embed.set_author(name=f"{ctx.author.name}", url="https://eru-chitanda.github.io/server/", icon_url="https://cdn.discordapp.com/attachments/900226775458652270/910943017299497010/IMG_0078.png")
     embed.set_image(url="https://p4.wallpaperbetter.com/wallpaper/623/371/684/anime-hyouka-eru-chitanda-h%C5%8Dtar%C5%8D-oreki-hd-wallpaper-preview.jpg")
     embed.set_thumbnail(url="https://i.pinimg.com/originals/08/7d/61/087d61a0739e928e7a840a8a51bed05a.jpg")
     embed.set_footer(text="For more info :- https://lonelyguy12.github.io/")
@@ -1503,7 +1503,7 @@ async def devintroduce(ctx):
     I am ~~single~~ taken by Skyy xD
     Personality Type - ISFP - T :)
     Glad to see y'all have an amazing day''', color = bot_embed_color)
-    embed.set_author(name=f"Lonely Guy", url="https://discord.gg/ANj8Mz6fy4", icon_url="https://cdn.discordapp.com/attachments/900226775458652270/910943017299497010/IMG_0078.png")
+    embed.set_author(name=f"Lonely Guy", url="https://eru-chitanda.github.io/server/", icon_url="https://cdn.discordapp.com/attachments/900226775458652270/910943017299497010/IMG_0078.png")
     embed.set_image(url="https://p4.wallpaperbetter.com/wallpaper/623/371/684/anime-hyouka-eru-chitanda-h%C5%8Dtar%C5%8D-oreki-hd-wallpaper-preview.jpg")
     embed.set_thumbnail(url="https://i.pinimg.com/originals/08/7d/61/087d61a0739e928e7a840a8a51bed05a.jpg")
     embed.set_footer(text="For more info :- https://lonelyguy12.github.io/")
