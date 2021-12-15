@@ -575,14 +575,7 @@ async def weather(ctx, *, city):
             weather = r["weather"][0]["main"]
             humidity = round(float(r["main"]["humidity"]), 1)
             wind_speed = round(float(r["wind"]["speed"]), 1)
-            em = disnake.Embed(description=f'''
-            Temperature: `{temperature}`
-            Lowest: `{lowest}`
-            Highest: `{highest}`
-            Weather: `{weather}`
-            Humidity: `{humidity}`
-            Wind Speed: `{wind_speed}`
-            ''')
+            em = disnake.Embed(description=f"\nTemperature: `{temperature}`\nLowest: `{lowest}`\nHighest: `{highest}`\nWeather: `{weather}`\nHumidity: `{humidity}`\nWind Speed: `{wind_speed}`\n")
             em.add_field(name='City', value=city.capitalize())
             em.set_thumbnail(url='https://ak0.picdn.net/shutterstock/videos/1019313310/thumb/1.jpg')
             try:
