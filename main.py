@@ -925,13 +925,13 @@ async def sshot(ctx,url):
 async def lyrics(ctx, *args):
     track = " ".join(args)
     wait = await ctx.reply(f":mag: Please hold on, searching for `{track}`")
-    r=requests.get(f'https://atrs7391.herokuapp.com/api/v2/lyrics?query={recap}&api_key=test_key-1')
+    r=requests.get(f'https://some-cool-api.herokuapp.com/lyrics/?lyrics={track}')
     data=r.json()
     if data['status']=='success':
-        title = res['results']['title']
-        artist = res['results']['main_artist']
-        lyrics = res['results']['lyrics']
-        source = res['results']['source']
+        title = res['title']
+        artist = res['artist']
+        lyrics = res['lyrics']
+        source = res['source']
         embed = disnake.Embed(title=f"**{title}**", description=f"**{artist}**\n\n\n{lyrics}", color=bot_embed_color)
         embed.set_footer(text=f"Source: {source}")
         await wait.edit(embed=embed)
