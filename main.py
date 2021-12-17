@@ -924,10 +924,10 @@ async def sshot(ctx,url):
 @bot.command(aliases=['lyrixs', 'lyrix', 'lyric'])
 async def lyrics(ctx, *, args):
     track = args.replace(" ", "+")
-    wait = await ctx.reply(f":mag: Please hold on, searching for `{track}`")
+    wait = await ctx.reply(f":mag: Please hold on, searching for `{args}`")
     r=requests.get(f'https://some-cool-api.herokuapp.com/lyrics/?lyrics={track}')
     res=r.json()
-    if res['status']=='success':
+    if res['status']=='200':
         title = res['title']
         artist = res['artist']
         lyrics = res['lyrics']
