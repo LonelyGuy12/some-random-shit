@@ -927,7 +927,8 @@ async def lyrics(ctx, *, args):
     wait = await ctx.reply(f":mag: Please hold on, searching for `{args}`")
     r=requests.get(f'https://some-cool-api.herokuapp.com/lyrics/?lyrics={track}')
     res=r.json()
-    if res['status']=='200':
+    print(res["status"])
+    if res["status"]==200:
         title = res['title']
         artist = res['artist']
         lyrics = res['lyrics']
