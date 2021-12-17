@@ -926,8 +926,8 @@ async def lyrics(ctx, *, song):
     track = song.replace(" ", "+")
     wait = await ctx.reply(f":mag: Please hold on, searching for `{song}`")
     r=requests.get(f'https://some-cool-api.herokuapp.com/lyrics/?lyrics={track}')
-    res=r.json()
-    if res["status"]==200:
+    try:
+        res=r.json()
         title = res['title']
         artist = res['artist']
         lyrics = res['lyrics']
@@ -935,7 +935,7 @@ async def lyrics(ctx, *, song):
         embed = disnake.Embed(title=f"**{title}**", description=f"**{artist}**\n\n\n{lyrics}\n", color=bot_embed_color)
         embed.set_footer(text=f"Source: {source}")
         await wait.edit(embed=embed)
-    else:
+    except:
         await wait.edit(content=f"Couldn't find any lyrics for `{song}`. Please try giving a more detailed search.")
 '''
     track = " ".join(args)
