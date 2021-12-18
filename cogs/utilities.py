@@ -97,7 +97,7 @@ class Utilities(commands.Cog):
   @commands.command()
   async def recipe(self, ctx, *, food_name):
     food = food_name.replace(" ", "+")
-    api_url = f"https://api.edamam.com/api/recipes/v2?type=public&q=" + food + "&app_id=6c255cd9&app_key=5962a391f3b2c29e43c8c6af5e9fa2c9"
+    api_url = f"https://api.edamam.com/api/recipes/v2?type=public&q={food}&app_id={edamam_api_recipe_app_id}&app_key={edamam_api_recipe_app_key}"
     async with aiohttp.ClientSession() as session:
         async with session.get(api_url) as resp:
             res = await resp.json()
