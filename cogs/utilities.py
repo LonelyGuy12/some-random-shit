@@ -47,7 +47,7 @@ class Utilities(commands.Cog):
     
     
   @commands.command()
-  async def pingweb(self, ctx, website = None):
+  async def pingweb(self, ctx, website):
       if website is None: 
           embed=discord.Embed(title="Error!", description="You didn't enter a website to ping for ;-;", color=0x243e7b)
           await ctx.send(embed=embed)
