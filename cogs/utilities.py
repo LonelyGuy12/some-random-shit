@@ -208,6 +208,17 @@ class Utilities(commands.Cog):
         await ctx.reply(embed=embed)
       except:
         await ctx.reply("Please send a valid rating!! Valid parameters are `pg`,`pg13`,`r`")
+
+  @commands.command()
+  async def pypi(self, ctx, package):
+    r = requests.get(f"https://pypi.org/pypi/{package}/json")
+    try:
+      res = r.json()
+      await ctx.reply(f"https://pypi.org/project/{package}/")
+    except:
+        embed = discord.Embed(title="Package not found", description="The package you requested was not found on PyPI", color=bot_embed_color)
+        await ctx.reply(embed=embed)
+
   
 def setup(bot):
   bot.add_cog(Utilities(bot))
