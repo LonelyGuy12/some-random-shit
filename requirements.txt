@@ -26,3 +26,4 @@ sentry-sdk
 pyfiglet
 pytimeparse
 psutil
+lyricsfinder
