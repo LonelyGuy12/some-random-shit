@@ -995,6 +995,18 @@ async def company(ctx, *domain):
       ''', color=bot_embed_color)
       await ctx.reply(embed=em)
 
+class Nitro(disnake.ui.View):
+    def __init__(self):
+        super().__init__()
+
+    @disnake.ui.button(style=disnake.ButtonStyle.blurple, label="\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800ACCEPT\u2800\u2800\u2800\u2800\u2800\u2800\u2800\u2800")
+    async def rickroll(self, button: disnake.ui.Button, interaction: disnake.Interaction):
+        await interaction.response.send_message("https://c.tenor.com/Z6gmDPeM6dgAAAAC/dance-moves.gif", ephemeral=True)
+
+@bot.command(name="nitro")
+async def nitro(ctx):
+      view = Nitro()
+      await ctx.reply("https://cdn.discordapp.com/attachments/852140133859196967/863128551552450590/rickrolled3_4.png",view=view)
 
 class InteractiveView(disnake.ui.View):
     def __init__(self):
