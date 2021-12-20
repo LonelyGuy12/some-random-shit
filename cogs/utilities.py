@@ -213,10 +213,15 @@ class Utilities(commands.Cog):
   async def pypi(self, ctx, package):
     r = requests.get(f"https://pypi.org/pypi/{package}/json")
     try:
-      res = r.json()
-      await ctx.reply(f"https://pypi.org/project/{package}/")
+        res = r.json()
+        author = res['info']['author']
+        embed = disnake.Embed(title=res['info']['name'], url = f"https://pypi.org/project/{package}/", description=f"{res['info']['summary']}\n\n\n", color=bot_embed_color)
+        embed.set_author(name="PyPI", url="https://pypi.org/", icon_url="https://thumbs.dreamstime.com/b/python-icon-filled-python-icon-website-design-mobile-app-development-python-icon-filled-development-collection-155362649.jpg")
+        embed.add_field(name="More Details :- \n\n", value=res['info']['home_page'], inline=False)
+        embed.set_thumbnail(url=f"https://pypi.org/static/images/twitter.6fecba6f.jpg")
+        await ctx.reply(embed=embed)
     except:
-        embed = discord.Embed(title="Package not found", description="The package you requested was not found on PyPI", color=bot_embed_color)
+        embed = discord.Embed(title="Package Not Found!", description="Please check the spelling of the package name and try again!", color=bot_embed_color)
         await ctx.reply(embed=embed)
 
   
