@@ -27,3 +27,4 @@ pyfiglet
 pytimeparse
 psutil
 lyricsfinder
+disnake-paginator
