@@ -8,6 +8,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import bs4
 import wikipedia
+import html
 import aiohttp
 bot_embed_color = 0x4548a8
 
@@ -189,6 +190,22 @@ class Utilities(commands.Cog):
       except:
         await ctx.reply("Please send a valid rating!! Valid parameters are `pg`,`pg13`,`r`")
 
+
+  @commands.command()
+  async def question(self, ctx):
+    r = requests.get('https://opentdb.com/api.php?amount=1')
+    res = json.loads(r.text)
+    question1 = res['results'][0]['question']
+    question = html.unescape(question1)
+    correct_answer = res['results'][0]['correct_answer']
+    category = res['results'][0]['category']
+    difficulty = res['results'][0]['difficulty']
+    em = disnake.Embed(title=category, description=question,colour=bot_embed_color)
+    em.add_field(name="Correct Answer :-", value=f"||{correct_answer}||")
+    em.set_footer(text=f"Difficulty : {difficulty}")
+    await ctx.reply(embed=em)
+
+
   @commands.command()
   async def dare(self, ctx, rating = None):
     if rating == None:
@@ -221,7 +238,7 @@ class Utilities(commands.Cog):
         embed.set_thumbnail(url=f"https://pypi.org/static/images/twitter.6fecba6f.jpg")
         await ctx.reply(embed=embed)
     except:
-        embed = discord.Embed(title="Package Not Found!", description="Please check the spelling of the package name and try again!", color=bot_embed_color)
+        embed = disnake.Embed(title="Package Not Found!", description="Please check the spelling of the package name and try again!", color=bot_embed_color)
         await ctx.reply(embed=embed)
 
   
