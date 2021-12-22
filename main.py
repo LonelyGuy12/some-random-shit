@@ -1293,18 +1293,6 @@ async def apod(ctx, choice = None):
     await ctx.reply(embed=embed)
 
 
-@bot.command()
-async def question(ctx):
-  r = requests.get('https://opentdb.com/api.php?amount=1')
-  res = json.loads(r.text)
-  question = res['results'][0]['question']
-  correct_answer = res['results'][0]['correct_answer']
-  category = res['results'][0]['category']
-  difficulty = res['results'][0]['difficulty']
-  em = disnake.Embed(title=category, description=question,colour=bot_embed_color)
-  em.add_field(name="Correct Answer :-", value=f"||{correct_answer}||")
-  em.set_footer(text=f"Difficulty : {difficulty}")
-  await ctx.reply(embed=em)
 
 @bot.command()
 async def spotify(ctx: Context, member: disnake.Member = None):
