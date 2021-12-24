@@ -313,9 +313,9 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                 await node.destroy()
 
         nodes = {'MAIN': {'host': 'lava.devin-dev.xyz',
-                          'port': 3888,
-                          'rest_uri': 'http://lava.devin-dev.xyz:3888',
-                          'password': 'ayraiscute',
+                          'port': 443,
+                          'rest_uri': 'http://lava.devin-dev.xyz:443',
+                          'password': 'lava123',
                           'identifier': 'MAIN',
                           'region': 'germany',
                           }}
