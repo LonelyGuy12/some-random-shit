@@ -1144,7 +1144,7 @@ async def help(ctx, *, cmd = None):
         hi4 = "||`nsfwwaifu`,`nsfwneko`,`blowjob`, `nsfwtrap`, `oppai`, `ass`, `hentai`, `nsfwmaid`, `selfies`, `oral`, `uniform`, `milf`||"
         embed.add_field(name=Field4, value=hi4, inline=False)
         Field5 = "Utilities :-"
-        hi5 = "`recipe`, `time`, `company`,`pingweb`,`bitly`,`cuttly`,`eth`,`btc` ,`userinfo` ,`geoip` ,`roleinfo`,`av` ,`lyrics` ,`calculate`, `mac`"
+        hi5 = "`recipe`, `time`, `company`,`pingweb`,`bitly`,`cuttly`,`eth`,`btc` ,`userinfo` ,`geoip` ,`roleinfo`,`av` ,`lyrics` ,`calculate`, `mac`, `pypi`"
         embed.add_field(name=Field5, value=hi5, inline=False)
         Field6 = "Music :-  (**The music bot is still under testing some things might fail to work or cause errors.**)"
         hi6 = "`connect`,`pause`,`current`,`play`,`queue`,`stop`,`shuffle`,`skip`,`volume`,`resume`,`swap_dj`"
