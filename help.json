@@ -45,5 +45,6 @@
     "resume": "Resumes the current song",
     "blowjob": "Sends you a random blowjob gif",
     "recipe": "Gives you recipe of a dish",
-    "wikipedia": "Searches Wikipedia for a given query"
+    "wikipedia": "Searches Wikipedia for a given query",
+    "pypi": "Searched PyPI for a given query"
 }
