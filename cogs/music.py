@@ -312,10 +312,10 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             for node in previous.values():
                 await node.destroy()
 
-        nodes = {'MAIN': {'host': 'lava.devin-dev.xyz',
-                          'port': 443,
-                          'rest_uri': 'https://lava.devin-dev.xyz:443',
-                          'password': 'lava123',
+        nodes = {'MAIN': {'host': 'lava.pumpdev.org',
+                          'port': 3799,
+                          'rest_uri': 'http://lava.pumpdev.org:3799',
+                          'password': 'pumpisfree',
                           'identifier': 'MAIN',
                           'region': 'germany',
                           }}
