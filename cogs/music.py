@@ -314,7 +314,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
         nodes = {'MAIN': {'host': 'lava.devin-dev.xyz',
                           'port': 443,
-                          'rest_uri': 'http://lava.devin-dev.xyz:443',
+                          'rest_uri': 'https://lava.devin-dev.xyz:443',
                           'password': 'lava123',
                           'identifier': 'MAIN',
                           'region': 'germany',
