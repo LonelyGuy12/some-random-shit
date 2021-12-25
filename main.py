@@ -1297,7 +1297,6 @@ async def apod(ctx, choice = None):
 @bot.command()
 async def spotify(ctx: Context, member: disnake.Member = None):
     """See info about the member's spotify activity."""
-
     member = member or ctx.author
 
     if member.bot:
