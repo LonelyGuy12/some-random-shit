@@ -50,8 +50,8 @@ class Fun(commands.Cog):
           await wait.edit(content="", embed=embed)
       except:
           raise(error)
-    
-    
+
+
   @commands.command()
   async def gayrate(self, ctx, *, name=None):
     rate = random.randrange(99)
@@ -78,7 +78,7 @@ class Fun(commands.Cog):
       embed = discord.Embed(title='PP size machine', description=f"{name}'s pp \n 8{ppsize}D", color=ctx.author.color)
       await ctx.send(embed=embed)
 
-  
+
   @commands.command()
   async def simprate(self, ctx, *, name=None):
     rate = random.randrange(99)
