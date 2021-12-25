@@ -147,7 +147,7 @@ class Utilities(commands.Cog):
           page=wikipedia.page(wikipedia.search(query)[0])
       except wikipedia.exceptions.DisambiguationError as e:
           counter=0
-          while page==None:
+          while page is None:
               try:
                   page=wikipedia.page(e.options[counter])
               except:
@@ -172,7 +172,7 @@ class Utilities(commands.Cog):
 
   @commands.command()
   async def truth(self, ctx, rating = None):
-    if rating == None:
+    if rating is None:
       r = requests.get(f"https://api.truthordarebot.xyz/api/truth")
       res = r.json()
       Tile = f"Here is a truth for you"
@@ -208,7 +208,7 @@ class Utilities(commands.Cog):
 
   @commands.command()
   async def dare(self, ctx, rating = None):
-    if rating == None:
+    if rating is None:
       r = requests.get(f"https://api.truthordarebot.xyz/api/dare")
       res = r.json()
       Tile = f"Here is a dare for you"
