@@ -56,7 +56,7 @@ class Fun(commands.Cog):
   async def gayrate(self, ctx, *, name=None):
     rate = random.randrange(99)
     rate1 = rate + 1
-    if name == None:
+    if name is None:
       user = ctx.author
       embed = discord.Embed(title = "Gayrate Machine", description = f"You are {rate1}% gay 🏳️‍🌈" , color = ctx.author.color)
       await ctx.send(embed = embed)
@@ -70,7 +70,7 @@ class Fun(commands.Cog):
     random_number = random.randint(0, 30)
     alphabet = '='
     ppsize = alphabet * random_number
-    if name ==None:
+    if name is None:
       user = ctx.author
       embed = discord.Embed(title='PP size machine', description=f"{user.name}'s pp \n 8{ppsize}D", color=ctx.author.color)
       await ctx.send(embed=embed)
@@ -83,7 +83,7 @@ class Fun(commands.Cog):
   async def simprate(self, ctx, *, name=None):
     rate = random.randrange(99)
     rate1 = rate + 1
-    if name == None:
+    if name is None:
       user = ctx.author
       embed = discord.Embed(title = "Simprate Machine", description = f"You are {rate1}% simp" , color = ctx.author.color)
       await ctx.send(embed = embed)
@@ -128,7 +128,7 @@ class Fun(commands.Cog):
   @commands.command()
   @commands.cooldown(1, 5,commands.BucketType.user)
   async def insult(self, ctx, *, member: discord.Member = None):
-    if member == None: member = ctx.author
+    if member is None: member = ctx.author
     async with aiohttp.ClientSession() as session:
       async with session.get("https://insult.mattbas.org/api/insult") as response:
         insult = await response.text()

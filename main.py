@@ -49,7 +49,7 @@ cuttly_key = config.get('cuttly_key')
 bot_embed_color = 0x4548a8
 NASA_API_KEY = config.get('NASA_API_KEY')
 token = os.getenv("token")
-if token == None:
+if token is None:
     token = config.get("token")
 else:
     pass
@@ -424,7 +424,7 @@ async def cuttly(ctx, *, link):
 
 @bot.command(pass_context=True)
 async def userinfo(ctx, user: disnake.Member = None):
-  if user == None:
+  if user is None:
     user = ctx.author
   else:
     pass
@@ -1151,7 +1151,7 @@ async def help(ctx, *, cmd = None):
         embed.add_field(name=Field6, value=hi6, inline=False)
         embed.set_footer(text="Note:- VC Activities will work only if the bot has permissions to create invite link")
         await ctx.reply(embed=embed)
-    elif cmd == None:
+    elif cmd is None:
       titld = "Need Help??"
       main = "Hina is a bot made for fun and moderation. It is totally dedicated to the girl I love bot. To view the command list please use `luv help commands`"
       embedVar = disnake.Embed(title=titld, url="https://eru-chitanda.github.io/server/", description=main, color=0x2a45bf)
@@ -1159,7 +1159,7 @@ async def help(ctx, *, cmd = None):
     else:
       cmd = cmd.lower()
       desc = helpl.get(cmd)
-      if desc == None:
+      if desc is None:
           embedVar = disnake.Embed(title="Command not found", description="Please check the command name", color=0x2a45bf)
           await ctx.reply(embed=embedVar)
       else:
@@ -1189,7 +1189,7 @@ async def truth(
     rating: str = Param(
         description="The Rating of which you want the question to be", default = None)
     ):
-    if rating == None:
+    if rating is None:
       r = requests.get(f"https://api.truthordarebot.xyz/api/truth/?rating=")
       res = r.json()
       Tile = f"Here is a truth for you"
@@ -1287,9 +1287,9 @@ async def apod(ctx, choice = None):
         embed = disnake.Embed(title = title, description = explanation, colour = bot_embed_color)
         embed.set_image(url=url)
     except:
-	    url = res['url']
-	    title = res['title']
-	    embed = disnake.Embed(title = title, url = url, description = explanation, colour = bot_embed_color)
+     url = res['url']
+     title = res['title']
+     embed = disnake.Embed(title = title, url = url, description = explanation, colour = bot_embed_color)
     await ctx.reply(embed=embed)
 
 
@@ -1341,7 +1341,7 @@ async def dare(
     rating: str = Param(
         description="The Rating of which you want the question to be", default = None)
     ):
-    if rating == None:
+    if rating is None:
       r = requests.get(f"https://api.truthordarebot.xyz/api/dare/?rating=")
       res = r.json()
       Tile = f"Here is a dare for you"
@@ -1361,7 +1361,7 @@ async def dare(
 
 @bot.command()
 async def nhie(ctx, rating = None):
-  if rating == None:
+  if rating is None:
     r = requests.get(f"https://api.truthordarebot.xyz/api/nhie")
     res = r.json()
     Tile = f"Here is a never have I ever question for you "
@@ -1388,7 +1388,7 @@ async def nhie(
     rating: str = Param(
         description="The Rating of which you want the question to be", default = None)
     ):
-    if rating == None:
+    if rating is None:
       r = requests.get(f"https://api.truthordarebot.xyz/api/nhie")
       res = r.json()
       Tile = f"Here is a Never Have I ever question for you"
