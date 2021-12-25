@@ -45,8 +45,8 @@ class Utilities(commands.Cog):
       em = discord.Embed(description=f'USD: `{str(usd)}$`\nEUR: `{str(eur)}€`')
       em.set_author(name='Bitcoin', icon_url='https://cdn.pixabay.com/photo/2013/12/08/12/12/bitcoin-225079_960_720.png')
       await ctx.reply(embed=em)
-    
-    
+  
+  
   @commands.command()
   async def pingweb(self, ctx, website):
       if website is None: 
@@ -62,7 +62,7 @@ class Utilities(commands.Cog):
           else:
               await ctx.send(f'Site is up, responded with a status code of {r}')
 
-    
+
   @commands.command(aliases=['pfp', 'avatar'])
   async def av(self, ctx, *, user: discord.Member): 
       av = user.display_avatar.url
