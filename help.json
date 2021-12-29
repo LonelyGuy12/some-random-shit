@@ -46,5 +46,6 @@
     "blowjob": "Sends you a random blowjob gif",
     "recipe": "Gives you recipe of a dish",
     "wikipedia": "Searches Wikipedia for a given query",
-    "pypi": "Searched PyPI for a given query"
+    "pypi": "Searched PyPI for a given query",
+    "remind": "Sets a reminder for you."
 }
