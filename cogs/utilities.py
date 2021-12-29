@@ -45,8 +45,8 @@ class Utilities(commands.Cog):
       em = discord.Embed(description=f'USD: `{str(usd)}$`\nEUR: `{str(eur)}€`')
       em.set_author(name='Bitcoin', icon_url='https://cdn.pixabay.com/photo/2013/12/08/12/12/bitcoin-225079_960_720.png')
       await ctx.reply(embed=em)
-  
-  
+
+
   @commands.command()
   async def pingweb(self, ctx, website):
       if website is None: 
@@ -70,7 +70,7 @@ class Utilities(commands.Cog):
       embed.set_image(url=av)
       await ctx.send(embed=embed)
 
-  
+
   @commands.command(aliases=['server', 'serverinfo'])
   async def sinfo(self, ctx):
       embed = discord.Embed(title=f"{ctx.guild.name}", description="Here is the server info :-", color=bot_embed_color)
@@ -241,6 +241,6 @@ class Utilities(commands.Cog):
         embed = disnake.Embed(title="Package Not Found!", description="Please check the spelling of the package name and try again!", color=bot_embed_color)
         await ctx.reply(embed=embed)
 
-  
+
 def setup(bot):
   bot.add_cog(Utilities(bot))

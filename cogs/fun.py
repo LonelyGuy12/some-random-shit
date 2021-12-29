@@ -64,7 +64,7 @@ class Fun(commands.Cog):
       em=discord.Embed(title = "Gayrate Machine", description = f"{name} is {rate1}% gay 🏳️‍🌈" , color = ctx.author.color)
       await ctx.send(embed=em)
 
-    
+
   @commands.command()
   async def pp(self, ctx, *, name=None):
     random_number = random.randint(0, 30)
@@ -133,6 +133,6 @@ class Fun(commands.Cog):
       async with session.get("https://insult.mattbas.org/api/insult") as response:
         insult = await response.text()
         await ctx.send(f"{member.mention} {insult}.")
-  
+
 def setup(bot):
   bot.add_cog(Fun(bot))
