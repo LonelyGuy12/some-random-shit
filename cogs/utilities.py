@@ -4,6 +4,7 @@ from disnake.ext import commands
 import random
 import requests
 import json
+import asyncio
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import bs4
@@ -240,6 +241,23 @@ class Utilities(commands.Cog):
     except:
         embed = disnake.Embed(title="Package Not Found!", description="Please check the spelling of the package name and try again!", color=bot_embed_color)
         await ctx.reply(embed=embed)
+
+  @commands.command()
+  async def remind(self, ctx, time = None, *, reminder = None):
+    if time.isdigit():
+      time = int(time)
+      if time > 0:
+        embedVar = disnake.Embed(title=f"Reminding in {time} seconds!", description=f"Reason: {reminder}", color=bot_embed_color)
+        await ctx.reply(embed=embedVar)
+        await asyncio.sleep(time)
+        embed = disnake.Embed(title=f"Reminder!", description=f"Reason: {reminder}", color=bot_embed_color)
+        await ctx.reply(f"{ctx.author.mention}", embed=embed)
+      else:
+        embed = disnake.Embed(title="Invalid Time!", description="Please enter a valid time!", color=bot_embed_color)
+        await ctx.reply(embed=embed)
+    else:
+      embed = disnake.Embed(title="Invalid Time!", description="Please enter a valid time!", color=bot_embed_color)
+      await ctx.reply(embed=embed)
 
 
 def setup(bot):
