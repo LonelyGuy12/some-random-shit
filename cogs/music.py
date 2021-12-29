@@ -318,6 +318,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                           'password': 'youshallnotpass',
                           'identifier': 'MAIN',
                           'region': 'IN',
+                          'secure': true
                           }}
 
         for n in nodes.values():
