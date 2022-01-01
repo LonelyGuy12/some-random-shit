@@ -1153,7 +1153,7 @@ async def help(ctx, *, cmd = None):
         await ctx.reply(embed=embed)
     elif cmd is None:
       titld = "Need Help??"
-      main = "Hina is a bot made for fun and moderation. It is totally dedicated to the girl I love bot. To view the command list please use `luv help commands`"
+      main = "Eru is a bot made for fun and moderation! It is totally dedicated to the girl I love Yui! To view the command list please use `luv help commands`"
       embedVar = disnake.Embed(title=titld, url="https://eru-chitanda.github.io/server/", description=main, color=0x2a45bf)
       await ctx.send(embed=embedVar)
     else:
@@ -1255,9 +1255,14 @@ async def love(
 
 @bot.command()
 async def love(ctx, mentioned_member: disnake.Member = None):
-  r = requests.get(f"https://atrs-webapis.herokuapp.com/API/calculate_love/{str(ctx.author.name)}/{str(mentioned_member.name)}")
-  em = disnake.Embed(description=f"You love {str(mentioned_member.mention)} by {(r.text)}") 
-  await ctx.send(embed=em)
+    if ctx.author.id in [827123687055949824, 826823454081941545, 886120777630486538, 738609666505834517, 840411506646319124, 879469423923183667]:
+        if mentioned_member.id in [840411506646319124, 879469423923183667, 827123687055949824, 826823454081941545, 886120777630486538, 738609666505834517]:
+            em = disnake.Embed(title = "Woah! Slow Down!", description = f"Your love percentage was so high that the meter blasted. You both surely are the best couples......", color = bot_embed_color)
+            em.set_footer(text="I pray that you both will always be together!")
+    else:
+        r = requests.get(f"https://atrs-webapis.herokuapp.com/API/calculate_love/{str(ctx.author.name)}/{str(mentioned_member.name)}")
+        em = disnake.Embed(description=f"You love {str(mentioned_member.mention)} by {(r.text)}") 
+    await ctx.reply(embed=em)
 
 @bot.command()
 async def spotipy(ctx, user: disnake.Member = None):
