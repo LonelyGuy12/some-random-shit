@@ -972,7 +972,13 @@ async def lyrics(ctx, *, song):
             await wait.edit(content=":x: Something went wrong, can't show lyrics ")
 '''
 
-
+@bot.command()
+async def remindbothofus(ctx):
+  asyncio.sleep(1)
+  wifey = bot.get_user(738609666505834517)
+  await wifey.send("It's time. I really miss you. Please unblock me")
+  me = bot.get_user(886120777630486538)
+  await me.send("Text her you survived for a week!")
 
 
 @bot.command()
