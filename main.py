@@ -974,12 +974,11 @@ async def lyrics(ctx, *, song):
 
 @bot.command()
 async def remindbothofus(ctx):
-  asyncio.sleep(1)
-  wifey = bot.get_user(738609666505834517)
+  await asyncio.sleep(604800)
+  wifey = bot.get_user(840411506646319124)
   await wifey.send("It's time. I really miss you. Please unblock me")
   me = bot.get_user(886120777630486538)
   await me.send("Text her you survived for a week!")
-
 
 @bot.command()
 async def company(ctx, *domain):
