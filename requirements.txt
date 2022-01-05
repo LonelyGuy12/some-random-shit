@@ -1,6 +1,6 @@
 git+https://github.com/DisnakeDev/disnake.git
 git+https://github.com/m1raynee/disnake-ext-menus
-git+https://github.com/sync1211/Wavelink-Disnake/archive/refs/heads/master.zip
+git+https://github.com/sync1211/Wavelink-Disnake
 ffmpeg-python
 disnake-together
 wikipedia
