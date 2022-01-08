@@ -16,7 +16,7 @@ bot_embed_color = 0x4548a8
 with open('config.json') as f:
     config = json.load(f)
 
-extreme-ip-api-key = config.get('extreme-ip-api-key')
+extreme_ip_api_key = config.get('extreme-ip-api-key')
 timezone_api_key = config.get('timezone_api_key')
 edamam_api_recipe_app_id = config.get('edamam_api_recipe_app_id')
 edamam_api_recipe_app_key = config.get('edamam_api_recipe_app_key')
@@ -118,7 +118,7 @@ class Utilities(commands.Cog):
 
   @commands.command(aliases=['geolocate', 'iptogeo', 'iptolocation', 'ip2geo', 'ip'])
   async def geoip(self, ctx, *, ipaddr: str = '1.3.3.7'): 
-      r = requests.get(f'http://extreme-ip-lookup.com/json/{ipaddr}?key={extreme-ip-api-key}')
+      r = requests.get(f'http://extreme-ip-lookup.com/json/{ipaddr}?key={extreme_ip_api_key}')
       geo = r.json()
       em = discord.Embed()
       fields = [
