@@ -17,12 +17,12 @@ async-timeout
 python-dotenv
 PyNaCl
 python-math
-dnspython
+timezonefinder
 GitPython
 motor
 websockets
 disnake-jishaku
-sentry-sdk
+geopy
 pyfiglet
 pytimeparse
 psutil
