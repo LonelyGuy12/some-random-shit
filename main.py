@@ -422,21 +422,25 @@ async def cuttly(ctx, *, link):
   em.add_field(name='Shortened link', value=new, inline=False)
   await ctx.reply(embed=em)
 
-@bot.command(pass_context=True)
-async def userinfo(ctx, user: disnake.Member = None):
-  if user is None:
-    user = ctx.author
-  else:
-    pass
-  embed = disnake.Embed(title="{}'s Info".format(user.name), description="Here's What I could Find in Discord's Database!", color=0x0072ff)
-  embed.add_field(name="Name", value=user.name)
-  embed.add_field(name="ID", value=user.id, inline=True)
-  embed.add_field(name="Status", value=user.status, inline=True)
-  embed.add_field(name="Role", value=user.top_role, inline=True)
-  embed.add_field(name="Joined At", value=user.joined_at, inline=True)
-  embed.set_thumbnail(url=user.display_avatar.url)
-  embed.set_footer(text=common_footer)
-  await ctx.reply(embed=embed)
+@bot.command(aliases=['userinfo', 'user', 'uinfo'])
+async def whois(ctx, *, user: disnake.Member = None):
+    if user is None:
+        user = ctx.author      
+    date_format = "%a, %d %b %Y %I:%M %p"
+    em = disnake.Embed(description=user.mention, color = bot_embed_color)
+    em.set_author(name=str(user), icon_url=user.display_avatar.url)
+    em.set_thumbnail(url=user.display_avatar.url)
+    em.add_field(name="Joined", value=user.joined_at.strftime(date_format))
+    members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
+    em.add_field(name="Join position", value=str(members.index(user)+1))
+    em.add_field(name="Registered", value=user.created_at.strftime(date_format))
+    if len(user.roles) > 1:
+        role_string = ' '.join([r.mention for r in user.roles][1:])
+        em.add_field(name="Roles [{}]".format(len(user.roles)-1), value=role_string, inline=False)
+    perm_string = ', '.join([str(p[0]).replace("_", " ").title() for p in user.guild_permissions if p[1]])
+    em.add_field(name="Guild permissions", value=perm_string, inline=False)
+    em.set_footer(text='ID: ' + str(user.id))
+    return await ctx.reply(embed=em)
 
 
 @bot.command()
@@ -659,13 +663,13 @@ async def startYT(ctx, channel:disnake.VoiceChannel = None):
     if not channel:
         try:
             vc = ctx.author.voice.channel.id
-            link = await together_control.create_link(vc, 'wtogether')
+            link = await together_control.create_link(vc, 'youtube')
             await ctx.send(f"Click the link 👇\n{link}")
         except:
             await ctx.send("Please join a VC or tag a channel and try again:slight_smile:")
     else:
         vc = channel.id
-        link = await together_control.create_link(vc, 'wtogether')
+        link = await together_control.create_link(vc, 'youtube')
         await ctx.send(f"Click the link 👇\n{link}")
 
 @bot.slash_command(
@@ -680,13 +684,13 @@ async def youtube(
     if not channel:
         try:
             vc = inter.author.voice.channel.id
-            link = await together_control.create_link(vc, 'wtogether')
+            link = await together_control.create_link(vc, 'youtube')
             await inter.response.send_message(f"Click the link 👇\n{link}")
         except:
             await inter.response.send_message("Please join a VC or tag a channel and try again:slight_smile:")
     else:
         vc = channel.id
-        link = await together_control.create_link(vc, 'wtogether')
+        link = await together_control.create_link(vc, 'youtube')
         await inter.response.send_message(f"Click the link 👇\n{link}")
 
 @bot.command()
@@ -972,13 +976,8 @@ async def lyrics(ctx, *, song):
             await wait.edit(content=":x: Something went wrong, can't show lyrics ")
 '''
 
-@bot.command()
-async def remindbothofus(ctx):
-  await asyncio.sleep(604800)
-  wifey = bot.get_user(840411506646319124)
-  await wifey.send("It's time. I really miss you. Please unblock me")
-  me = bot.get_user(886120777630486538)
-  await me.send("Text her you survived for a week!")
+
+
 
 @bot.command()
 async def company(ctx, *domain):
