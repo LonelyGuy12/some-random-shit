@@ -1530,6 +1530,31 @@ async def unloadall(ctx):
                 await ctx.send(f"Unloaded `{filename[:-3]}` successfully!")    
 
 @bot.command()
+async def recognize(ctx):
+    attachment = ctx.message.attachments[0]
+    url = attachment.url
+    files = {
+        'url': (None, url),
+        'return': (None, 'apple_music,spotify'),
+        'api_token': (None, '3b136ac6db06b6d4326c3a7d4a8a6b67'),
+    }
+
+    response = requests.post('https://api.audd.io/', files=files)
+    res = response.json()
+    status = res['status']
+    if status == 'success':
+        song = res['result']['title']
+        artist = res['result']['artist']
+        album = res['result']['album']
+        song_link = res['result']['song_link']
+        label = res['result']['label']
+        embed = disnake.Embed(title= song, url=song_link, description=artist + ' - ' + album + ' - ' + label)
+        embed.set_author(name=label, url= song_link)
+        await ctx.reply(embed=embed)
+    else:
+        await ctx.reply('No result')		
+		
+@bot.command()
 async def loadall(ctx):
     if ctx.author.id in [827123687055949824, 826823454081941545, 886120777630486538, 738609666505834517]:
         for filename in os.listdir("./cogs"):
