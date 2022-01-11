@@ -1563,6 +1563,15 @@ async def loadall(ctx):
                 bot.load_extension(f"cogs.{filename[:-3]}")
                 await ctx.send(f"Loaded `{filename[:-3]}` successfully!")
 
+@bot.command(name='eval', pass_context=True)
+@commands.is_owner()
+async def eval_(ctx, *, command):
+    res = eval(command)
+    if inspect.isawaitable(res):
+        await ctx.send(await res)
+    else:
+        await ctx.send(res)
+		
 bot.load_extension("cogs.utilities")
 bot.load_extension("cogs.nsfw")
 bot.load_extension("cogs.fun")
