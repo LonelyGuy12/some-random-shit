@@ -66,7 +66,6 @@ class MyBot(commands.Bot):
             return True
 
         # Else fall back to the original
-        return await super().is_owner(user)
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('Luv', 'Eru', 'eru', 'luv', 'love', 'Love', 'l!', 'e!', 'E!', 'L!'), strip_after_prefix = True, intents = intents, sync_commands_debug=True, case_insensitive=True, enable_debug_events=True)
 together_control = DisnakeTogether(bot)
