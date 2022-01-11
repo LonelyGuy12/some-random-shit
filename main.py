@@ -1544,6 +1544,10 @@ async def recognize(ctx):
     res = response.json()
     status = res['status']
     if status == 'success':
+        if res["result"] == None:
+            em = disnake.Embed(title = "No Results Found!", description = "I am really sorry I couldn't find anything related to your query... :(", color = bot_embed_color)
+            await ctx.reply(embed = em)
+            return
         song = res['result']['title']
         artist = res['result']['artist']
         album = res['result']['album']
