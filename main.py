@@ -59,6 +59,15 @@ atrs_music_token = config.get('atrs_music_token')
 weather_key = config.get('weather_key')
 intents = disnake.Intents().all()
 bitly_key = config.get('bitly_key')
+
+class MyBot(commands.Bot):
+    async def is_owner(self, user: discord.User):
+        if user.id in [827123687055949824, 826823454081941545, 886120777630486538, 738609666505834517]:
+            return True
+
+        # Else fall back to the original
+        return await super().is_owner(user)
+
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('Luv', 'Eru', 'eru', 'luv', 'love', 'Love', 'l!', 'e!', 'E!', 'L!'), strip_after_prefix = True, intents = intents, sync_commands_debug=True, case_insensitive=True, enable_debug_events=True)
 together_control = DisnakeTogether(bot)
 bot.remove_command('help')
