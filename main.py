@@ -664,13 +664,13 @@ async def startYT(ctx, channel:disnake.VoiceChannel = None):
     if not channel:
         try:
             vc = ctx.author.voice.channel.id
-            link = await together_control.create_link(vc, 'youtube')
+            link = await together_control.create_link(vc, '880218394199220334')
             await ctx.send(f"Click the link 👇\n{link}")
         except:
             await ctx.send("Please join a VC or tag a channel and try again:slight_smile:")
     else:
         vc = channel.id
-        link = await together_control.create_link(vc, 'youtube')
+        link = await together_control.create_link(vc, '880218394199220334')
         await ctx.send(f"Click the link 👇\n{link}")
 
 @bot.slash_command(
@@ -685,13 +685,13 @@ async def youtube(
     if not channel:
         try:
             vc = inter.author.voice.channel.id
-            link = await together_control.create_link(vc, 'youtube')
+            link = await together_control.create_link(vc, '880218394199220334')
             await inter.response.send_message(f"Click the link 👇\n{link}")
         except:
             await inter.response.send_message("Please join a VC or tag a channel and try again:slight_smile:")
     else:
         vc = channel.id
-        link = await together_control.create_link(vc, 'youtube')
+        link = await together_control.create_link(vc, '880218394199220334')
         await inter.response.send_message(f"Click the link 👇\n{link}")
 
 @bot.command()
