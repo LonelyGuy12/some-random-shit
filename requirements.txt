@@ -18,7 +18,7 @@ python-dotenv
 PyNaCl
 python-math
 timezonefinder
-shazamio
+ShazamAPI
 motor
 websockets
 disnake-jishaku
