@@ -12,7 +12,6 @@ simpcalci
 praw
 PyDictionary
 python-dateutil
-youtube_dl
 async-timeout
 python-dotenv
 PyNaCl
