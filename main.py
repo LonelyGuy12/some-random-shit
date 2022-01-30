@@ -59,7 +59,7 @@ atrs_music_token = config.get('atrs_music_token')
 weather_key = config.get('weather_key')
 intents = disnake.Intents().all()
 bitly_key = config.get('bitly_key')
-owners = [827123687055949824, 826823454081941545, 886120777630486538, 738609666505834517]
+owners = [827123687055949824, 826823454081941545, 886120777630486538, 738609666505834517, 923979287881744415]
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('Luv', 'Eru', 'eru', 'luv', 'love', 'Love', 'l!', 'e!', 'E!', 'L!'), strip_after_prefix = True, intents = intents, sync_commands_debug=True, case_insensitive=True, enable_debug_events=True, owner_ids = set(owners))
 together_control = DisnakeTogether(bot)
 bot.remove_command('help')
