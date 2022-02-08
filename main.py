@@ -1530,7 +1530,7 @@ async def unloadall(ctx):
                 bot.unload_extension(f"cogs.{filename[:-3]}")
                 await ctx.send(f"Unloaded `{filename[:-3]}` successfully!")    
 
-@bot.command(aliases=['recognise', 'reco', 'rc'])
+@bot.command(aliases=['recognise', 'reco', 'gno', 'gni'])
 async def recognize(ctx):
     attachment = ctx.message.attachments[0]
     url = attachment.url

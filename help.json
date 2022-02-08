@@ -47,5 +47,10 @@
     "recipe": "Gives you recipe of a dish",
     "wikipedia": "Searches Wikipedia for a given query",
     "pypi": "Searched PyPI for a given query",
-    "remind": "Sets a reminder for you."
+    "remind": "Sets a reminder for you.",
+    "recognize": "Recognizes a song from the attachment on the message",
+    "recognise": "Recognizes a song from the attachment on the message",
+    "reco": "Recognizes a song from the attachment on the message",
+    "gno": "Recognizes a song from the attachment on the message",
+    "gni": "Recognizes a song from the attachment on the message"
 }
