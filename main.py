@@ -1149,7 +1149,7 @@ async def help(ctx, *, cmd = None):
         hi4 = "||`nsfwwaifu`,`nsfwneko`,`blowjob`, `nsfwtrap`, `oppai`, `ass`, `hentai`, `nsfwmaid`, `selfies`, `oral`, `uniform`, `milf`||"
         embed.add_field(name=Field4, value=hi4, inline=False)
         Field5 = "Utilities :-"
-        hi5 = "`recipe`, `time`, `company`,`pingweb`,`bitly`,`cuttly`,`eth`,`btc` ,`userinfo` ,`geoip` ,`roleinfo`,`av` ,`lyrics` ,`calculate`, `mac`, `pypi`,`remind`"
+        hi5 = "`recognize`,`recipe`, `time`, `company`,`pingweb`,`bitly`,`cuttly`,`eth`,`btc` ,`userinfo` ,`geoip` ,`roleinfo`,`av` ,`lyrics` ,`calculate`, `mac`, `pypi`,`remind`"
         embed.add_field(name=Field5, value=hi5, inline=False)
         Field6 = "Music :-  (**The music bot is still under testing some things might fail to work or cause errors.**)"
         hi6 = "`connect`,`pause`,`current`,`play`,`queue`,`stop`,`shuffle`,`skip`,`volume`,`resume`,`swap_dj`"
@@ -1530,34 +1530,22 @@ async def unloadall(ctx):
                 bot.unload_extension(f"cogs.{filename[:-3]}")
                 await ctx.send(f"Unloaded `{filename[:-3]}` successfully!")    
 
-@bot.command()
+@bot.command(aliases=['recognise', 'reco', 'rc'])
 async def recognize(ctx):
     attachment = ctx.message.attachments[0]
     url = attachment.url
-    files = {
-        'url': (None, url),
-        'return': (None, 'apple_music,spotify'),
-        'api_token': (None, '3b136ac6db06b6d4326c3a7d4a8a6b67'),
-    }
-
-    response = requests.post('https://api.audd.io/', files=files)
-    res = response.json()
-    status = res['status']
-    if status == 'success':
-        if res["result"] == None:
-            em = disnake.Embed(title = "No Results Found!", description = "I am really sorry I couldn't find anything related to your query... :(", color = bot_embed_color)
-            await ctx.reply(embed = em)
-            return
-        song = res['result']['title']
-        artist = res['result']['artist']
-        album = res['result']['album']
-        song_link = res['result']['song_link']
-        label = res['result']['label']
-        embed = disnake.Embed(title= song, url=song_link, description=artist + ' - ' + album + ' - ' + label)
-        embed.set_author(name=label, url= song_link)
-        await ctx.reply(embed=embed)
-    else:
-        await ctx.reply('No result')		
+    query_url = f"https://some-cool-api.herokuapp.com/recognize_music?url={url}"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(query_url) as resp:
+            res = await resp.json(content_type=None)
+    title = res['track']['title']
+    background = res['track']['images']['background']
+    coverart = res['track']['images']['coverart']
+    url = res['track']['share']['href']
+    subtitle = res['track']['subtitle']
+    em = disnake.Embed(title = title, url=url, description=f"by **{subtitle}**", color = bot_embed_color)
+    em.set_image(url=coverart)
+    await ctx.reply(embed=em)		
 		
 @bot.command()
 async def loadall(ctx):
