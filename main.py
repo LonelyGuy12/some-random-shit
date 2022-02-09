@@ -1530,10 +1530,14 @@ async def unloadall(ctx):
                 bot.unload_extension(f"cogs.{filename[:-3]}")
                 await ctx.send(f"Unloaded `{filename[:-3]}` successfully!")    
 
-@bot.command(aliases=['recognise', 'reco', 'gno', 'gni'])
-async def recognize(ctx):
-    attachment = ctx.message.attachments[0]
-    url = attachment.url
+@bot.command()
+async def recognize(ctx, url = None):
+    if url is None:
+        try:
+            attachment = ctx.message.attachments[0]
+            url = attachment.url
+        except:
+            em = discord.Embed(title = "No attachement or URL!", description="Hey man you gotta send a file or a URL to recognize the music from -_-")
     query_url = f"https://some-cool-api.herokuapp.com/recognize_music?url={url}"
     async with aiohttp.ClientSession() as session:
         async with session.get(query_url) as resp:
