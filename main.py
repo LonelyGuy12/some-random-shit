@@ -929,18 +929,20 @@ async def sshot(ctx,url):
 async def lyrics(ctx, *, song):
     track = song.replace(" ", "+")
     wait = await ctx.reply(f":mag: Please hold on, searching for `{song}`")
-    r=requests.get(f'https://some-cool-api.herokuapp.com/lyrics/?lyrics={track}')
-    try:
-        res=r.json()
-        title = res['title']
-        artist = res['artist']
-        lyrics = res['lyrics']
-        source = res['source']
-        embed = disnake.Embed(title=f"**{title}**", description=f"**{artist}**\n\n\n{lyrics}\n", color=bot_embed_color)
-        embed.set_footer(text=f"Source: {source}")
-        await wait.edit(embed=embed)
-    except:
-        await wait.edit(content=f"Couldn't find any lyrics for `{song}`. Please try giving a more detailed search.")
+    query_url = f'https://some-cool-api.herokuapp.com/lyrics/?lyrics={track}'
+    async with aiohttp.ClientSession() as session:
+        async with session.get(query_url) as resp:
+            try:
+                res = await resp.json(content_type=None)
+                title = res['title']
+                artist = res['artist']
+                lyrics = res['lyrics']
+                source = res['source']
+                embed = disnake.Embed(title=f"**{title}**", description=f"**{artist}**\n\n\n{lyrics}\n", color=bot_embed_color)
+                embed.set_footer(text=f"Source: {source}")
+                await wait.edit(embed=embed)
+            except:
+                await wait.edit(content=f"Couldn't find any lyrics for `{song}`. Please try giving a more detailed search.")
 '''
     track = " ".join(args)
     user = ctx.author
