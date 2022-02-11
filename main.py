@@ -1535,11 +1535,13 @@ async def unloadall(ctx):
 @bot.command()
 async def recognize(ctx, url = None):
     if url is None:
-        try:
+        if ctx.message.attachments:
             attachment = ctx.message.attachments[0]
             url = attachment.url
-        except:
-            em = discord.Embed(title = "No attachement or URL!", description="Hey man you gotta send a file or a URL to recognize the music from -_-")
+        else:
+            em = discord.Embed(title = "No attachement or URL!", description="Hey man you gotta send a file or a URL to recognize the music from -_-", color = bot_embed_color)
+            await ctx.send(embed=em)
+            return
     query_url = f"https://some-cool-api.herokuapp.com/recognize_music?url={url}"
     async with aiohttp.ClientSession() as session:
         async with session.get(query_url) as resp:
@@ -1551,8 +1553,14 @@ async def recognize(ctx, url = None):
     subtitle = res['track']['subtitle']
     em = disnake.Embed(title = title, url=url, description=f"by **{subtitle}**", color = bot_embed_color)
     em.set_image(url=coverart)
-    await ctx.reply(embed=em)		
-		
+    await ctx.reply(embed=em)
+
+@recognize.error
+async def unban_error(ctx, error):
+    if isinstance(error, json.decoder.JSONDecodeError):
+        em = discord.Embed(title = "Missing Arguments!", description="You need to provide an argument!!")
+        await ctx.reply(embed=em)
+
 @bot.command()
 async def loadall(ctx):
     if ctx.author.id in [827123687055949824, 826823454081941545, 886120777630486538, 738609666505834517]:
