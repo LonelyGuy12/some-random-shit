@@ -1532,7 +1532,7 @@ async def unloadall(ctx):
                 bot.unload_extension(f"cogs.{filename[:-3]}")
                 await ctx.send(f"Unloaded `{filename[:-3]}` successfully!")    
 
-@bot.command()
+@bot.command(aliases=['gni', 'gno', 'recognise'])
 async def recognize(ctx, url = None):
     if url is None:
         if ctx.message.attachments:
