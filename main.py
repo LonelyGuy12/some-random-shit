@@ -1576,7 +1576,7 @@ async def snipe(ctx):
         avatar = snipe_message_author_avatar[channel.id]
         message_content = snipe_message_content[channel.id]
         em = disnake.Embed(title=f"Last message deleted in {channel_name} :-",
-                           description=message_content, color = bot_embed_color)
+                           description=f"```yaml\n{message_content}```", color = bot_embed_color)
         em.set_footer(icon_url=f"{avatar}",
             text=f"Message sent by {snipe_author}"
         )
