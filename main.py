@@ -42,7 +42,9 @@ with open('config.json') as f:
 with open('help.json') as l:
     helpl = json.load(l)
 
-waifuim= {'User-Agent':f'aiohttp/{aiohttp.__version__}; YourAppName'}
+snipe_message_author = {}
+snipe_message_author_avatar = {}
+snipe_message_content = {}
 
 prefix = config.get('prefix')
 cuttly_key = config.get('cuttly_key')
@@ -78,6 +80,16 @@ async def on_guild_join(guild):
 	I hope we can have a great time together
         """, color=bot_embed_color)
         await general.send(embed=embed)
+
+@bot.event
+async def on_message_delete(message):
+    snipe_message_author[message.channel.id] = message.author
+    snipe_message_author_avatar[message.channel.id] = message.author.display_avatar.url
+    snipe_message_content[message.channel.id] = message.content
+    await asyncio.sleep(60)
+    del snipe_message_author[message.channel.id]
+    del snipe_message_author_avatar[message.channel.id]
+    del snipe_message_content[message.channel.id]
 
 @bot.event
 async def on_command_error(ctx,error):
@@ -1151,7 +1163,7 @@ async def help(ctx, *, cmd = None):
         hi4 = "||`nsfwwaifu`,`nsfwneko`,`blowjob`, `nsfwtrap`, `oppai`, `ass`, `hentai`, `nsfwmaid`, `selfies`, `oral`, `uniform`, `milf`||"
         embed.add_field(name=Field4, value=hi4, inline=False)
         Field5 = "Utilities :-"
-        hi5 = "`recognize`,`recipe`, `time`, `company`,`pingweb`,`bitly`,`cuttly`,`eth`,`btc` ,`userinfo` ,`geoip` ,`roleinfo`,`av` ,`lyrics` ,`calculate`, `mac`, `pypi`,`remind`"
+        hi5 = "`recognize`,`recipe`, `time`, `company`,`pingweb`,`bitly`,`cuttly`,`eth`,`btc` ,`userinfo` ,`geoip` ,`roleinfo`,`av` ,`lyrics` ,`calculate`, `mac`, `pypi`,`remind`, `snipe`"
         embed.add_field(name=Field5, value=hi5, inline=False)
         Field6 = "Music :-  (**The music bot is still under testing some things might fail to work or cause errors.**)"
         hi6 = "`connect`,`pause`,`current`,`play`,`queue`,`stop`,`shuffle`,`skip`,`volume`,`resume`,`swap_dj`"
@@ -1554,6 +1566,24 @@ async def recognize(ctx, url = None):
     em = disnake.Embed(title = title, url=url, description=f"by **{subtitle}**", color = bot_embed_color)
     em.set_image(url=coverart)
     await ctx.reply(embed=em)
+
+@bot.command(name='snipe')
+async def snipe(ctx):
+    channel = ctx.channel
+    try:
+        channel_name = channel.name
+        snipe_author = snipe_message_author[channel.id]
+        avatar = snipe_message_author_avatar[channel.id]
+        message_content = snipe_message_content[channel.id]
+        em = disnake.Embed(title=f"Last message deleted in {channel_name} :-",
+                           description=message_content, color = bot_embed_color)
+        em.set_footer(icon_url=f"{avatar}",
+            text=f"Message sent by {snipe_author}"
+        )
+        await ctx.send(embed=em)
+    except KeyError:
+        em = disnake.Embed(title = "Uh oh!", description="Nothing was deleted recently (or wasn't cached)!\nPlease try again later!")
+        await ctx.send(embed=em)
 
 @recognize.error
 async def unban_error(ctx, error):
