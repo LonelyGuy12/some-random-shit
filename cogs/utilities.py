@@ -3,6 +3,8 @@ import disnake
 from disnake.ext import commands
 import random
 import requests
+from datetime import timedelta
+import re
 import json
 import asyncio
 from datetime import datetime
@@ -15,6 +17,14 @@ bot_embed_color = 0x4548a8
 
 with open('config.json') as f:
     config = json.load(f)
+
+UNITS = {'s':'seconds', 'm':'minutes', 'h':'hours', 'd':'days', 'w':'weeks'}
+
+def convert_to_seconds(s):
+    return int(timedelta(**{
+        UNITS.get(m.group('unit').lower(), 'seconds'): float(m.group('val'))
+        for m in re.finditer(r'(?P<val>\d+(\.\d+)?)(?P<unit>[smhdw]?)', s, flags=re.I)
+    }).total_seconds())
 
 extreme_ip_api_key = config.get('extreme-ip-api-key')
 timezone_api_key = config.get('timezone_api_key')
@@ -245,17 +255,13 @@ class Utilities(commands.Cog):
 
   @commands.command()
   async def remind(self, ctx, time = None, *, reminder = None):
-    if time.isdigit():
-      time = int(time)
-      if time > 0:
-        embedVar = disnake.Embed(title=f"Reminding in {time} seconds!", description=f"Reason: {reminder}", color=bot_embed_color)
-        await ctx.reply(embed=embedVar)
-        await asyncio.sleep(time)
-        embed = disnake.Embed(title=f"Reminder!", description=f"Reason: {reminder}", color=bot_embed_color)
-        await ctx.reply(f"{ctx.author.mention}", embed=embed)
-      else:
-        embed = disnake.Embed(title="Invalid Time!", description="Please enter a valid time!", color=bot_embed_color)
-        await ctx.reply(embed=embed)
+    time = convert_to_seconds(s=time)
+    if time > 0:
+      embedVar = disnake.Embed(title=f"Reminding in {time} seconds!", description=f"Reason: {reminder}", color=bot_embed_color)
+      await ctx.reply(embed=embedVar)
+      await asyncio.sleep(time)
+      embed = disnake.Embed(title=f"Reminder!", description=f"Reason: {reminder}", color=bot_embed_color)
+      await ctx.reply(f"{ctx.author.mention}", embed=embed)
     else:
       embed = disnake.Embed(title="Invalid Time!", description="Please enter a valid time!", color=bot_embed_color)
       await ctx.reply(embed=embed)
