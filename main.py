@@ -1163,7 +1163,7 @@ async def help(ctx, *, cmd = None):
         hi4 = "||`nsfwwaifu`,`nsfwneko`,`blowjob`, `nsfwtrap`, `oppai`, `ass`, `hentai`, `nsfwmaid`, `selfies`, `oral`, `uniform`, `milf`||"
         embed.add_field(name=Field4, value=hi4, inline=False)
         Field5 = "Utilities :-"
-        hi5 = "`recognize`,`recipe`, `time`, `company`,`pingweb`,`bitly`,`cuttly`,`eth`,`btc` ,`userinfo` ,`geoip` ,`roleinfo`,`av` ,`lyrics` ,`calculate`, `mac`, `pypi`,`remind`, `snipe`"
+        hi5 = "`recognize`,`recipe`, `time`, `company`,`pingweb`,`bitly`,`cuttly`,`eth`,`btc` ,`userinfo` ,`geoip` ,`roleinfo`,`av` ,`lyrics` ,`calculate`, `mac`, `pypi`,`remind`, `snipe`, `giveaway`"
         embed.add_field(name=Field5, value=hi5, inline=False)
         Field6 = "Music :-  (**The music bot is still under testing some things might fail to work or cause errors.**)"
         hi6 = "`connect`,`pause`,`current`,`play`,`queue`,`stop`,`shuffle`,`skip`,`volume`,`resume`,`swap_dj`"
@@ -1499,10 +1499,77 @@ async def spamwifey(ctx, amount: int, *, message):
     await ctx.send ("How TF do you know bout this command?? And you trying to spam my wifey?? Why TF?? This command can't be used by anyone. And don't dare spam my wifey")
 
 @bot.command()
-async def sendJJ(ctx,  message): # b'\xfc'
-    await ctx.message.delete() 
-    user = bot.get_user(870820425033211944)
-    await user.send(message)
+async def senduser(ctx, member: disnake.Member, message): # b'\xfc'
+    await ctx.message.delete()
+    await member.send(message)
+
+@bot.command()
+@commands.has_permissions(manage_messages=True)
+async def giveaway(ctx):
+    # Giveaway command requires the user to have a "Giveaway Host" role to function properly
+
+    # Stores the questions that the bot will ask the user to answer in the channel that the command was made
+    # Stores the answers for those questions in a different list
+
+    giveaway_questions = ['In Which channel should I host the giveaway in?', 'What is the prize?', 'How long should the giveaway run for (in seconds)?',]
+    giveaway_answers = []
+    # Checking to be sure the author is the one who answered and in which channel
+    def check(m):
+        return m.author == ctx.author and m.channel == ctx.channel
+    
+    # Askes the questions from the giveaway_questions list 1 by 1
+    # Times out if the host doesn't answer within 30 seconds
+    for question in giveaway_questions:
+        await ctx.send(question)
+        try:
+            message = await bot.wait_for('message', timeout= 30.0, check= check)
+        except asyncio.TimeoutError:
+            await ctx.send('You didn\'t answer in time.  Please try again and be sure to send your answer within 30 seconds of the question.')
+            return
+        else:
+            giveaway_answers.append(message.content)
+
+    # Grabbing the channel id from the giveaway_questions list and formatting is properly
+    # Displays an exception message if the host fails to mention the channel correctly
+    try:
+        c_id = int(giveaway_answers[0][2:-1])
+    except:
+        await ctx.send(f'You failed to mention the channel correctly.  Please do it like this: {ctx.channel.mention}')
+        return
+    
+    # Storing the variables needed to run the rest of the commands
+    channel = bot.get_channel(c_id)
+    prize = str(giveaway_answers[1])
+    time2 = int(giveaway_answers[2])
+
+    # Sends a message to let the host know that the giveaway was started properly
+    await ctx.send(f'The giveaway for {prize} will begin shortly.\nPlease direct your attention to {channel.mention}, this giveaway will end in {time2} seconds.')
+
+    # Giveaway embed message
+    give = discord.Embed(color = bot_embed_color)
+    give.set_author(name = f'GIVEAWAY TIME!', icon_url = 'https://i.imgur.com/VaX0pfM.png')
+    give.add_field(name= f'{ctx.author.name} is giving away: {prize}!', value = f'React with 🎉 to enter!\n Ends in <t:{int(time.time()+time2)}:R>!', inline = False)
+    end = datetime.datetime.utcnow() + datetime.timedelta(seconds = time2)
+    give.set_footer(text = f'Giveaway ends at {end} UTC!')
+    my_message = await channel.send(embed = give)
+    
+    # Reacts to the message
+    await my_message.add_reaction("🎉")
+    await asyncio.sleep(time2)
+
+    new_message = await channel.fetch_message(my_message.id)
+
+    # Picks a winner
+    users = await new_message.reactions[0].users().flatten()
+    users.pop(users.index(bot.user))
+    winner = random.choice(users)
+
+    # Announces the winner
+    winning_announcement = discord.Embed(color = bot_embed_color)
+    winning_announcement.set_author(name = f'THE GIVEAWAY HAS ENDED!', icon_url= 'https://i.imgur.com/DDric14.png')
+    winning_announcement.add_field(name = f'🎉 Prize: {prize}', value = f'🥳 **Winner**: {winner.mention}\n 🎫 **Number of Entrants**: {len(users)}', inline = False)
+    winning_announcement.set_footer(text = 'Thanks for entering!')
+    await channel.send(embed = winning_announcement)
 
 @bot.command()
 async def devintroduce(ctx):
@@ -1576,7 +1643,7 @@ async def snipe(ctx):
         avatar = snipe_message_author_avatar[channel.id]
         message_content = snipe_message_content[channel.id]
         em = disnake.Embed(title=f"Last message deleted in {channel_name} :-",
-                           description=f"```yaml\n{message_content}```", color = bot_embed_color)
+                           description=message_content, color = bot_embed_color)
         em.set_footer(icon_url=f"{avatar}",
             text=f"Message sent by {snipe_author}"
         )

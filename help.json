@@ -53,5 +53,6 @@
     "reco": "Recognizes a song from the attachment on the message",
     "gno": "Recognizes a song from the attachment on the message",
     "gni": "Recognizes a song from the attachment on the message",
-    "snipe": "Shows the last text message from a channel which was deleted"
+    "snipe": "Shows the last text message from a channel which was deleted",
+    "giveaway": "Creates a new giveaway!"
 }
