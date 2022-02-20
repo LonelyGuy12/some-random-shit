@@ -36,6 +36,7 @@
     "eth": "Tells you the current price of Etherum",
     "btc": "Tells you the current price of Bitcoin",
     "lyrics": "Sends the lyrics of a given song",
+    "lyrix": "Sends the lyrics of a given song",
     "play": "Plays a song from YouTube or any other platform!",
     "equalizer": "Sets the equalizer settings for your current voice channel",
     "skip": "Skips the current song",
