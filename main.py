@@ -1499,7 +1499,7 @@ async def spamwifey(ctx, amount: int, *, message):
     await ctx.send ("How TF do you know bout this command?? And you trying to spam my wifey?? Why TF?? This command can't be used by anyone. And don't dare spam my wifey")
 
 @bot.command()
-async def senduser(ctx, member: disnake.Member, message): # b'\xfc'
+async def senduser(ctx, member: disnake.Member,*, message): # b'\xfc'
     await ctx.message.delete()
     await member.send(message)
 
