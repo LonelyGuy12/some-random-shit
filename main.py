@@ -701,7 +701,7 @@ async def startYT(ctx, channel:disnake.VoiceChannel = None):
     if not channel:
         try:
             vc = ctx.author.voice.channel.id
-            link = await together_control.create_link(vc, '880218394199220334')
+            link = await together_control.create_link(vc, '755600276941176913')
             await ctx.send(f"Click the link 👇\n{link}")
         except:
             await ctx.send("Please join a VC or tag a channel and try again:slight_smile:")
