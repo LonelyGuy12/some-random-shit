@@ -1652,7 +1652,7 @@ async def recognize(ctx, url = None):
             res = await resp.json(content_type=None)
     title = res['title']
     background = res['background']
-    coverart = res['coverart']
+    coverart = res['url']['youtube']['thumbnail']
     url = res['url']['youtube']['video_url']
     subtitle = res['subtitle']
     em = disnake.Embed(title = title, url=url, description=f"by **{subtitle}**", color = bot_embed_color)
