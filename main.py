@@ -1646,15 +1646,15 @@ async def recognize(ctx, url = None):
             em = discord.Embed(title = "No attachement or URL!", description="Hey man you gotta send a file or a URL to recognize the music from -_-", color = bot_embed_color)
             await ctx.send(embed=em)
             return
-    query_url = f"https://some-cool-api.herokuapp.com/recognize_music?url={url}"
+    query_url = f"https://some-cool-api.herokuapp.com/v2/recognize_music/?url={url}"
     async with aiohttp.ClientSession() as session:
         async with session.get(query_url) as resp:
             res = await resp.json(content_type=None)
-    title = res['track']['title']
-    background = res['track']['images']['background']
-    coverart = res['track']['images']['coverart']
-    url = res['track']['share']['href']
-    subtitle = res['track']['subtitle']
+    title = res['title']
+    background = res['background']
+    coverart = res['coverart']
+    url = res['url']['youtube']['video_url']
+    subtitle = res['subtitle']
     em = disnake.Embed(title = title, url=url, description=f"by **{subtitle}**", color = bot_embed_color)
     em.set_image(url=coverart)
     await ctx.reply(embed=em)
